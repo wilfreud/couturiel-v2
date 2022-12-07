@@ -1,0 +1,11 @@
+.App-protected{
+    display: grid;
+    grid-template-columns: 1fr 20fr;
+    height: 100vh;
+    background-image: url('../assets/bbg.webp');
+}
+
+.App-main-container{
+    overflow-y: auto;
+    height: 100vh;
+}

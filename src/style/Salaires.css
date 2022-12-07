@@ -1,0 +1,53 @@
+.salaires-container{
+    padding: 2em;
+    /* height: 100%; */
+    /* background-color: blue; */
+}
+
+.table-row.prod-row.salaires-row{
+    display: grid;
+    grid-template-columns: repeat(5, 2fr);
+}
+
+.display-error{
+    color: red;
+    font-style: italic;
+}
+
+.option-btn{
+    /* width: 1.4em; */
+    cursor: pointer;
+}
+
+.option-btn.delete svg{
+    color: red;
+    opacity: .5;
+    transition: .5s;
+}
+
+.option-btn.delete:hover svg{
+    opacity: 1;
+    color: rgb(198, 10, 10);
+}
+
+.option-btn.edit svg{
+    color: var(--primary-color);
+}
+
+.table-cell.options{
+    display: flex;
+}
+
+.classic-btn{
+    color: var(--primary-color);
+    padding: 1em 2em;
+    font-weight: bolder;
+    cursor: pointer;
+    outline: none;
+    border: solid 1px var(--primary-color); 
+    cursor: pointer;
+}
+
+.total-css-it{
+    color: var(--secondary-color);
+}

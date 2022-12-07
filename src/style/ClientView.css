@@ -1,0 +1,44 @@
+.popup{
+    font-size: 1.1em;
+}
+
+.close-modal-contain{
+    display: flex;
+    justify-content: right;
+}
+
+.close-modal{
+    box-sizing: border-box;
+    right: 0;
+    width: 30px;
+    color: red;
+    cursor: pointer;
+}
+
+.username{
+    text-transform: capitalize;
+}
+
+.meta-infos{
+    margin: 1em 0;
+}
+
+.mesures{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em 2em;
+}
+
+.mesure-cell{
+    text-align: left;
+}
+
+.data{
+    color: var(--secondary-color);
+    font-style: italic;
+}
+
+.mesure-cell .data{
+    margin-left: 5px;
+    font-weight: bolder;
+}

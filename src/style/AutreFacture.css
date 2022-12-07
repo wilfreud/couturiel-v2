@@ -1,0 +1,25 @@
+.form-body{
+    padding: 8em;
+    DISPLAY: GRID;
+    place-content: center;
+    width: 60%;
+    gap: 2em;
+}
+
+.form-body .form-part .form-field{
+    color: var(--secondary-color)
+}
+
+.form-body .validate-form{
+    background-color: var(--secondary-color);
+    color: var(--primary-color)
+
+}
+
+hr{
+    width: 100%; 
+}
+
+.total-part{
+    color: var(--secondary-color);
+}

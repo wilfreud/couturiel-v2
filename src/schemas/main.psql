@@ -1,0 +1,82 @@
+\c postgres
+DROP DATABASE tailor_db;
+CREATE DATABASE tailor_db;
+\c tailor_db
+CREATE EXTENSION pgcrypto;
+CREATE TABLE IF NOT EXISTS login(
+    id SERIAL PRIMARY KEY,
+    passtype VARCHAR(255),
+    password TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS mesures(
+    id SERIAL NOT NULL PRIMARY KEY,
+    C VARCHAR(255),
+    E VARCHAR(255),
+    M VARCHAR(255),
+    La VARCHAR(255),
+    Lb VARCHAR(255),
+    S VARCHAR(255),
+    K VARCHAR(255),
+    F VARCHAR(255),
+    Lp VARCHAR(255),
+    Br VARCHAR(255),
+    Ba VARCHAR(255),
+    Poignee VARCHAR(255), 
+    Mollet VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS clients(
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
+    tel VARCHAR(255),
+    adresse VARCHAR(255),
+    commandes SMALLINT DEFAULT 0,
+    produit_commandes SMALLINT DEFAULT 0,
+    mesuresid INT,
+    CONSTRAINT fk_client_to_mesures FOREIGN KEY (mesuresid) REFERENCES "mesures"(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS commandes (
+    id SERIAL PRIMARY KEY,
+    proprietaire INT NOT NULL,
+    date_creation DATE DEFAULT NOW(),
+    date_livraison DATE,
+    valide BOOLEAN DEFAULT FALSE,
+    total INT NOT NULL DEFAULT 0,
+    avance INT NOT NULL DEFAULT 0,
+    remise INT NOT NULL DEFAULT 0,
+    CONSTRAINT fk_proprietaire_commande FOREIGN KEY (proprietaire) REFERENCES "clients"(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS commande_to_modele(
+    local_id SERIAL PRIMARY KEY,
+    commande_id INT,
+    produit_id INT NOT NULL,   
+    quantite SMALLINT DEFAULT 1, 
+    CONSTRAINT fk_middleware_contenu FOREIGN KEY (produit_id) REFERENCES "modeles"(id),
+    CONSTRAINT fk_middleware_commande FOREIGN KEY (commande_id) REFERENCES "commandes"(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE IF NOT EXISTS employes(
+    id SERIAL PRIMARY KEY,
+    prenom VARCHAR(255) NOT NULL,
+    nom VARCHAR(255) NOT NULL,
+    telephone VARCHAR(255),
+    salaire INT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS facturation(
+    id SERIAL PRIMARY KEY,
+    mois SMALLINT NOT NULL DEFAULT 1,
+    count SMALLINT NOT NULL DEFAULT 1
+);
+
+
+CREATE TABLE IF NOT EXISTS salaires(
+    id SERIAL PRIMARY KEY,
+    date_paiement DATE DEFAULT NOW(),
+    montant INT NOT NULL DEFAULT 0
+);

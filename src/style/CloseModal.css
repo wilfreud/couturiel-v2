@@ -1,0 +1,36 @@
+.logo{
+    width: 5em;
+}
+
+.popup{
+    background-color: #040404;
+    padding: 50px 70px;
+    border-radius: 5px;
+    color: white;
+    /* box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px; */
+    box-shadow: 0px 0px 25px 0px #e7bf3a48;
+}
+
+.modal-question{
+    color: red;
+    margin: 1.2em 0;
+}
+
+.popup-button{
+    margin: 0 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+    transition: .2s;
+}
+
+.popup-button.yes{
+    background-color: var(--primary-color);
+}
+
+.popup-button.yes:hover{
+    color: red;
+}

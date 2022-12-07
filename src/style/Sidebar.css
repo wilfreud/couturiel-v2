@@ -1,0 +1,79 @@
+#sidebar-container{
+    /* background-color: var(--secondary-color); */
+    background-image: url('../assets/R.jpeg');
+    height: 100%;
+    display: grid;
+    /* grid-template-rows: -1fr; */
+    gap: 8em 0;
+}
+
+.logo-container{
+    box-sizing: border-box;
+    padding-top: 15px;
+}
+
+#logo{
+    width: 133px;
+    padding-top: 1.5em;
+}
+
+.links-list{
+    display: grid;
+    gap: 20px;
+}
+
+.link-to-page{
+    display: flex;
+    align-items: center;
+    padding: 5px 20px;
+    transition: .1s ease-in;
+}
+
+.link-to-page:hover{
+    color: var(--primary-color);
+}
+
+.link-to-page svg{
+    width: 40px;
+    padding: 0 10px;
+}
+
+.link-ti{
+    transition: .2s;
+    user-select: none;
+}
+
+.link-ti.active{
+    color: var(--primary-color);
+    letter-spacing: .05em;
+}
+
+.link-to-page:has(.link-ti.active){
+    color: var(--primary-color);
+    background: linear-gradient(0.25turn, #ffdb3d00, #ff6670a8);
+}
+
+.logout{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 5px;
+}
+
+.logout svg{
+    cursor: pointer;
+    background: #13131370;
+    box-shadow: 2px 4px 4px 2px #13131370;
+    border-radius: 50%;
+    width: 20px;
+    /* position: absolute; */
+    bottom: 10px;
+    right: 10px;
+    transition: .1s ease-in;
+    transition-delay: .05s;
+}
+
+.logout svg:hover{
+    padding: 1px;
+}

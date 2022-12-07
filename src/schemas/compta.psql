@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS caisse(
+  id SERIAL NOT NULL PRIMARY KEY,
+  date DATE DEFAULT CURRENT_DATE,
+  entree INT,
+  libelle_entree TEXT,
+  sortie INT,
+  libelle_sortie TEXT
+);
