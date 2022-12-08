@@ -1,0 +1,20 @@
+
+.facture-itself.override{
+    font-size: 1.3em;
+}
+
+.header-facture.facture-part.override{
+    display: flex;
+    /* background-color: red; */
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.header-facture.facture-part.override #logo{
+    width: 10em;
+}
+
+.body-facture.facture-part.override{
+    display: grid;
+    justify-content: center;
+}

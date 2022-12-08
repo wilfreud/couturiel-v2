@@ -1,0 +1,163 @@
+#login-page{
+    display: grid;
+    place-items: center;
+}
+
+#header-images img{
+    display: block;
+    width: 200px;
+}
+
+#logo-png{
+    width: 200px;
+    /* padding: 50px; */
+}
+
+#type-password{
+    display: flex;
+    /* display: none; */
+    color: #fff;
+    caret-color: var(--primary-color);
+    border-radius: 50px;
+    border: solid 2px gray;
+    padding: 0 4px;
+    transition: .5s;
+}
+
+#type-password input{
+    color: white;
+    background: transparent;
+    outline: none;
+    border: none;
+    text-align: center;
+    padding: 4px 10px;
+    transition: all .3s ease-out;
+}
+
+#type-password:focus-within{
+    box-shadow: 0px 0px 5px 0px var(--primary-color);
+    border-color: #e7bf3a8f;
+}
+
+#type-password.error{
+    border-color: red;
+    animation: error-shake .3s ease-in;
+}
+
+@keyframes error-shake {
+    0% {
+        transform: translateX(0px);
+    }
+    20% {
+        transform: translateX(-20px);
+    }
+    40% {
+        transform: translateX(20px);
+    }
+    60% {
+        transform: translateX(-15px);
+    }
+    80% {
+        transform: translateX(15px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+#type-password.error:focus-within{
+    box-shadow: 0px 0px 5px 2px #ff000097;
+}
+
+#type-password input[placeholder]{
+    font-weight: 200;
+    /* opacity: .5; */
+}
+
+#show-password{
+    width: 20px;
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+/* SNIPPET for login button */
+.connect-btn {
+    margin-top: 20px;
+    padding: 0.6em 2em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    color: var(--primary-color);
+  }
+  
+  .connect-btn:before {
+    content: "";
+    background: linear-gradient(
+      45deg,
+      var(--primary-color),
+      #252216,
+      #403309,
+      var(--primary-color),
+      var(--primary-color),
+      var(--primary-color),
+      var(--primary-color),
+      var(--primary-color),
+      var(--primary-color),
+      var(--primary-color)
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowingconnect-btn 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+  }
+  
+  @keyframes glowingconnect-btn {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 400% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+  
+  .connect-btn:active {
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .connect-btn:active:after {
+    background: transparent;
+  }
+  
+  .connect-btn:hover:before {
+    opacity: 1;
+  }
+  
+  .connect-btn:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #191919;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+  }
+/* END OF SNIPPET */

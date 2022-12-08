@@ -1,0 +1,43 @@
+.input-select{
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+.add-new-cmd{
+    width: 30px;
+    cursor: pointer;
+    display:flex;
+    color: var(--primary-color);
+    /* background: red; */
+}
+
+.add-product{
+    display: flex;
+    justify-content: space-around;
+}
+
+.input-select{
+    border: none;
+    border-bottom: solid 2px #272727;
+}
+
+.input-select option{
+    background-color: var(--secondary-color);
+}
+
+.form-product{
+    display: flex;
+    justify-content: center;
+}
+
+.minus{
+    cursor: pointer;
+    width: 20px;
+    color: var(--primary-color);
+    /* background-color: blue; */
+    display: flex;
+}
+
+.minus svg{
+    pointer-events: none;
+}

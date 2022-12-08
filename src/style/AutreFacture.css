@@ -1,0 +1,11 @@
+.form-body{
+    padding: 8em;
+    DISPLAY: GRID;
+    place-content: center;
+    width: 60%;
+    gap: 2em;
+}
+
+hr{
+    width: 100%; 
+}

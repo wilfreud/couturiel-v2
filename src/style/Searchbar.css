@@ -1,0 +1,28 @@
+.searchbar{
+    background: var(--secondary-color);
+    padding: 10px 0;
+    user-select: none;
+    /* border-radius: 0 0 5px 5px; */
+}
+
+.search-input{
+    /* border-radius: 50px; */
+    outline: none;
+    background: transparent;
+    border: none;
+    padding: 5px 10px;
+    color: rgb(181, 181, 181);
+    /* border: none; */
+    border-bottom: solid 1px transparent;
+    transition: .3s ease;
+    /* box-shadow: 0px 2px 5px 1px #151515; */
+}
+
+.search-input[placeholder]{
+    font-style: italic;
+}
+
+.search-input:focus{
+    border-bottom: solid 1px rgba(195, 195, 195, 0.599);
+    
+}

@@ -1,0 +1,82 @@
+.component-body{
+    display: grid;
+    color: #c9c8c8;
+}
+
+.clients-container{
+    background-color: var(--secondary-color);
+    margin: 20px;
+    border-radius: 4px;
+}
+
+.add-client{
+    width: fit-content;
+    /* box-sizing: content-box; */
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    /* font-weight: 600; */
+    border-radius: 5px;
+    display: flex;
+    place-items: center;
+    padding: 2px 2px;
+    cursor: pointer;
+    justify-self: right;
+    margin: 10px 20px 0 0
+}
+
+.add-client svg{
+    width: 30px;
+    stroke-width: 4px;
+}
+
+.add-client div{
+    user-select: none;
+}
+
+.client-line{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: .5em 0;
+}
+
+.client-line:not(:last-child){
+    border-bottom: solid 1px #bebebe;
+}
+
+.client-line.table-header{ 
+    padding: 1em 0;
+    font-weight: bolder;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    background-color: var(--secondary-color-variant);
+    user-select: none;
+}
+
+.table-body{
+    max-height: 40em;
+    overflow-y: auto;
+    /* scrollbar-color: rebeccapurple green; */
+}
+
+.client-line .client-cell.prenom, .client-cell.nom{
+    text-transform: capitalize;
+}
+
+.client-cell.options svg{
+    width: 1.2em;
+    margin: 0 .1em;
+    transition: .15s;
+}
+
+.svg-span svg:hover{
+    color: #ffe68e;
+}
+
+.svg-span:last-child svg:hover{
+    color: rgb(255, 50, 50);
+}
+
+.client-cell.options .svg-span{
+    cursor: pointer;
+}

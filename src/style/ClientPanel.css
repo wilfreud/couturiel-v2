@@ -1,0 +1,65 @@
+.popup{
+    font-size: 1.3em;
+    background-image: url('../assets/logo.png');
+    background-size: 6em;
+    background-position: 115% 115%;
+    background-repeat: no-repeat;
+}
+
+.add-client-title{
+    margin: 1.3em 0;
+    color: var(--primary-color);
+    user-select: none;
+}
+
+.modal-content{
+    display: grid;
+    gap: 2em;
+    margin-top: 1em;
+    padding: 2px 1em;
+}
+
+.form-part{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em 2em;
+}
+
+.form-field{
+    color: white;
+    outline: none;
+    border: none;
+    border-bottom: solid 1px gray;
+    background-color: transparent;
+    padding: 0 00em 0 0.2em;
+    transition: .3s;
+}
+
+.form-field:focus{
+    border-bottom: solid 1px var(--primary-color);
+}
+
+.form-field[placeholder]{
+    text-transform: capitalize;
+    font-style: italic;
+    /* transition: 1.5s all linear; */
+    caret-color: var(--primary-color);
+}
+
+.validate-form{
+    user-select: none;
+    background-color: var(--primary-color);
+    border: none;
+    outline: none;
+    padding: .5em 1em;
+    /* width: fit-content; */
+    color: var(--secondary-color);
+    font-weight: bolder;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.validate-form:hover{
+    letter-spacing: .3px;
+}

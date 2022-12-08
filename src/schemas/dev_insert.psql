@@ -1,0 +1,5 @@
+
+SELECT 
+    (SELECT COALESCE(SUM(entree), 0) FROM caisse WHERE EXTRACT(MONTH FROM date) = 11 AND EXTRACT(YEAR FROM date) = 2022) AS entree, 
+    (SELECT COALESCE(SUM(sortie), 0) FROM caisse WHERE EXTRACT(MONTH FROM date) = 11 AND EXTRACT(YEAR FROM date) = 2022) AS sortie, 
+    (SELECT COALESCE(SUM(montant), 0) FROM salaires WHERE EXTRACT(MONTH FROM date_paiement) = 11 AND EXTRACT(YEAR FROM date_paiement) = 2022) AS salaires;

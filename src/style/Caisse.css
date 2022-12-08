@@ -1,0 +1,131 @@
+.caisse-contain{
+    text-align: center;
+    height: 100vh;
+}
+
+.caisse-table{
+    padding: 3em;
+    max-height: 80vh;
+    overflow-y: scroll;
+}
+
+.go-back{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    /* margin: 1em 0 0 20px; */
+    padding: .5em;
+}
+
+.go-back svg{
+    cursor: pointer;
+    /* box-sizing: border-box; */
+    width: 35px;
+    /* background-color: var(--secondary-color); */
+    border-radius: 50%;
+    padding-right: 2px;
+}
+
+.table-row{
+    display: grid;
+    grid-template-columns: 2fr 5fr 5fr;
+    position: relative;
+}
+
+.table-cell:not(.ignore-style){
+    background-color: var(--secondary-color);
+    border-bottom: solid 1px gray;
+    padding: .4em 0;
+}
+
+.table-header > .table-cell{
+    font-weight: bolder;
+    text-transform: uppercase;
+    user-select: none;
+}
+
+.table-header > .table-cell{
+    background-color: var(--secondary-color-variant);
+    color: var(--primary-color);
+}
+
+.table-cell.total-cell{
+    font-size: 1.3em;
+    padding: 2em;
+    text-align: left;
+}
+
+.total-title{
+    font-weight: bolder;
+    margin-right: 1em;
+    user-select: none;
+}
+
+.total-value{
+    font-size: 1.3em;
+    color: var(--primary-color);
+}
+
+.error{
+    color: red;
+}
+
+.table-cell{
+    place-content: center;
+    text-align: center;
+}
+
+.table-cell.subcell{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.table-row.table-body .table-cell{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* padding: 0; */
+}
+
+.add-row{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    padding: 5px 0;
+}
+
+.table-row.table-body.ignore-line .table-cell{
+    background-color: transparent;
+}
+
+.add-row input{
+    width: 95%;
+    /* margin: 0 1em; */
+    /* height: 2em; */
+    padding: 0 3em;
+}
+input.submit{
+    /* width: 6em; */
+    cursor: pointer;
+    font-size: 2em;
+}
+
+.add-row input:disabled:nth-child(1){
+    border: none;
+    background: none;
+}
+
+.pick-date{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: var(--primary-color);
+    border-bottom: solid 1px var(--primary-color);
+}
+
+.row-deleter{
+    width: 20px;
+    position: absolute;
+    right: 0;
+    color: red;
+    cursor:pointer;
+    display: flex;
+}

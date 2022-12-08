@@ -1,0 +1,24 @@
+CREATE TABLE IF NOT EXISTS categories_modeles(
+    id SERIAL PRIMARY KEY,
+    nom_categorie VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS modeles(
+    id SERIAL PRIMARY KEY,
+    nom_modele VARCHAR(255),
+    image TEXT,
+    categorie INT,
+    CONSTRAINT fk_modele_categorie FOREIGN KEY (categorie) REFERENCES "categories_modeles"(id) ON DELETE CASCADE
+);
+
+-- CREATE TYPE TAILLE_MODELE AS ENUM('M', 'S', 'L', 'XL', 'XXL');
+
+CREATE TABLE IF NOT EXISTS infos_modeles(
+    id SERIAL PRIMARY KEY,
+    taille VARCHAR(60),
+    quantite INT NOT NULL,
+    couleur VARCHAR(255),
+    modele INT,
+    prix INT,
+    CONSTRAINT fk_infos_modele FOREIGN KEY (modele) REFERENCES "modeles"(id) ON DELETE CASCADE
+);

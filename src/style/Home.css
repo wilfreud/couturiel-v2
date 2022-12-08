@@ -1,0 +1,46 @@
+
+.carousel{
+    /* position: absolute; */
+    background-image: url('../assets/slides/img (1).jpg');
+    background-size: contain;
+    background-position: center center;
+    width: 100%;
+    height: 100%;
+    animation: switch-bg 50s ease-in-out 0s infinite forwards;
+}
+
+@keyframes switch-bg {
+    0%{
+        background-image: url('../assets/slides/img (1).jpg');
+    }
+    10%{
+        background-image: url('../assets/slides/img (2).jpg');
+    }
+    20%{
+        background-image: url('../assets/slides/img (3).jpg');
+    }
+    30%{
+        background-image: url('../assets/slides/img (4).jpg');
+    }
+    40%{
+        background-image: url('../assets/slides/img (5).jpg');
+    }
+    50%{
+        background-image: url('../assets/slides/img (6).jpg');
+    }
+    60%{
+        background-image: url('../assets/slides/img (7).jpg');
+    }
+    70%{
+        background-image: url('../assets/slides/img (8).jpg');
+    }
+    80%{
+        background-image: url('../assets/slides/img (9).jpg');
+    }
+    90%{
+        background-image: url('../assets/slides/img (10).jpg');
+    }
+    100%{
+        background-image: url('../assets/slides/img (11).jpg');
+    }
+}

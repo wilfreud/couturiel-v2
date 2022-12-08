@@ -1,0 +1,133 @@
+CREATE OR REPLACE FUNCTION updateIfChanged(newValue ANYELEMENT, field ANYELEMENT, allowNull BOOLEAN DEFAULT FALSE) RETURNS ANYELEMENT AS $$
+BEGIN
+    IF 
+        (allowNull = FALSE AND newValue IS NULL) OR 
+        LOWER(newValue::varchar) = 'null' OR
+        LOWER(newValue::varchar) = 'undefined'
+    THEN
+        RETURN field;
+    ELSE
+        RETURN newValue;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- 
+CREATE OR REPLACE FUNCTION afterClientDelete()
+RETURNS TRIGGER AS 
+$$
+BEGIN
+    DELETE FROM mesures WHERE id = old.mesuresid;
+    RETURN old;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER clientDelete
+AFTER DELETE
+ON clients
+FOR EACH ROW
+EXECUTE FUNCTION afterClientDelete();
+
+
+-- 
+CREATE OR REPLACE FUNCTION updateCommandesCountForClient()
+    RETURNS TRIGGER AS
+$$
+BEGIN
+    IF NEW.valide = true THEN
+        UPDATE clients SET commandes = commandes + 1 WHERE id = NEW.proprietaire;
+    END IF;
+
+    RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER update_client_commande_count_trig
+AFTER UPDATE
+OF valide ON commandes
+FOR EACH ROW
+EXECUTE PROCEDURE updateCommandesCountForClient();
+
+
+--
+CREATE OR REPLACE FUNCTION checkToResetFacturesCount()
+    RETURNS TRIGGER AS
+$$
+BEGIN
+    IF NEW.count > 99 THEN
+        UPDATE facturation SET count = 1;
+    END IF;
+
+    RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER check_to_reset_factures_count_trig
+AFTER UPDATE OF count ON facturation
+FOR EACH ROW
+EXECUTE PROCEDURE checkToResetFacturesCount();
+
+
+--
+/* CREATING A TRIGGER TO INSERT data in caisse after command validation */
+
+drop trigger add_facture_to_caisse ON commandes;
+
+CREATE OR REPLACE FUNCTION addFactureToCaisse()
+    RETURNS TRIGGER AS
+$$
+BEGIN
+    IF NEW.valide = true THEN
+        INSERT INTO caisse(entree, libelle_entree) VALUES( NEW.total, 'TDR-' || EXTRACT(MONTH FROM CURRENT_DATE) || '-' || NEW.id );
+    END IF;
+    
+    RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+
+CREATE TRIGGER add_facture_to_caisse
+AFTER UPDATE
+OF valide ON commandes
+FOR EACH ROW
+EXECUTE PROCEDURE addFactureToCaisse();
+
+
+
+/* AUTO DECREMENT */
+CREATE OR REPLACE FUNCTION auto_decrement_modeles_count()
+    RETURNS TRIGGER AS
+$$
+DECLARE
+    ln RECORD;
+BEGIN
+
+    IF NEW.valide = true THEN
+        -- RAISE NOTICE 'ID -> %', NEW.valide;
+        FOR ln IN SELECT infos_modeles.quantite AS original_quantite, commande_to_modele.quantite AS quantite_commandee, modeles.id AS model_id 
+            FROM commandes 
+            INNER JOIN commande_to_modele on commande_to_modele.commande_id = commandes.id 
+            INNER JOIN modeles on commande_to_modele.produit_id = modeles.id
+            INNER JOIN infos_modeles ON modeles.id = infos_modeles.modele
+            AND commandes.id = NEW.id 
+        LOOP
+            -- RAISE NOTICE 'ITEM %', ln;
+            -- Update HEre
+            UPDATE infos_modeles SET quantite = ln.original_quantite - ln.quantite_commandee WHERE modele = ln.model_id;
+        END LOOP;
+    END IF;
+
+    RETURN NEW;
+END;
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER auto_decrement_modeles_count
+AFTER UPDATE
+OF valide ON commandes
+FOR EACH ROW
+EXECUTE PROCEDURE auto_decrement_modeles_count();
