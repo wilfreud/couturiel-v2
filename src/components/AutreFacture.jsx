@@ -23,7 +23,7 @@ function FactureClient({ closeModal, data }) {
     const month = new Date().getMonth() + 1
     const formatedMonth = String(month).padStart(2, 0)
     
-    return `BWCA-${formatedMonth}-${formatID}`
+    return `BUBA-${formatedMonth}-${formatID}`
   }
 
 // console.log((data?.modeles))
@@ -56,8 +56,8 @@ function FactureClient({ closeModal, data }) {
   })
 
   const INFOS = {
-    adresse : 'Dakar, Medina, Rue 17 x 6',
-    telephone : '77 284 93 93 / 78 115 45 15'
+    adresse : 'Liberté',
+    telephone : '77 302 83 27 / 77 129 93 93 / 77 258 84 80'
   }
 
 
