@@ -36,7 +36,7 @@
 
 #type-password:focus-within{
     box-shadow: 0px 0px 5px 0px var(--primary-color);
-    border-color: #e7bf3a8f;
+    border-color: var(--primary-color);
 }
 
 #type-password.error{

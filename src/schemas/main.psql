@@ -11,19 +11,20 @@ CREATE TABLE IF NOT EXISTS login(
 
 CREATE TABLE IF NOT EXISTS mesures(
     id SERIAL NOT NULL PRIMARY KEY,
-    C VARCHAR(255),
-    E VARCHAR(255),
-    M VARCHAR(255),
-    La VARCHAR(255),
-    Lb VARCHAR(255),
-    S VARCHAR(255),
-    K VARCHAR(255),
-    F VARCHAR(255),
-    Lp VARCHAR(255),
-    Br VARCHAR(255),
-    Ba VARCHAR(255),
-    Poignee VARCHAR(255), 
-    Mollet VARCHAR(255)
+    tour_ceinture VARCHAR(255), 
+    fesse VARCHAR(255),
+    cuisse VARCHAR(255),
+    longueur_pantalon VARCHAR(255),
+    bas_pantalon VARCHAR(255),
+    tour_cou VARCHAR(255),
+    epaules VARCHAR(255),
+    tour_poitrine VARCHAR(255),
+    tour_bras VARCHAR(255),
+    manche VARCHAR(255),
+    tour_manche VARCHAR(255),
+    longueur_haut VARCHAR(255),
+    blouse VARCHAR(255), 
+    taille VARCHAR(255)  
 );
 
 CREATE TABLE IF NOT EXISTS clients(

@@ -158,7 +158,7 @@ ipcMain.handle('delete-client', async(event, args) => {
 })
 
 ipcMain.handle('add-client', async(event, args) => {
-  const SQL = 'INSERT INTO mesures (c, e, m, la, lb, s, k, f, lp, br, ba, poignee, mollet) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING id'
+  const SQL = 'INSERT INTO mesures (tour_ceinture, fesse, cuisse, longueur_pantalon, bas_pantalon, tour_cou, epaules, tour_poitrine, tour_bras, manche, tour_manche, longueur_haut, blouse, taille) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING id'
   const res = await db.query(SQL, args.mesures)
   
   const SQL2 = 'INSERT INTO clients (nom, prenom, tel, adresse, mesuresid) VALUES($1, $2, $3, $4, $5) RETURNING id'
@@ -170,7 +170,7 @@ ipcMain.handle('add-client', async(event, args) => {
 ipcMain.handle('update-client', async(event, args) => {
   const SQL = 'UPDATE clients SET nom = $1, prenom = $2, tel = $3, adresse = $4 WHERE id = $5'
   await db.query(SQL, args.client)
-  const SQL2 = 'UPDATE mesures SET c = $1, e = $2, m = $3, la = $4, lb = $5, s = $6, k = $7, f = $8, lp = $9, br = $10, ba = $11, poignee = $12, mollet = $13 WHERE id = $14'
+  const SQL2 = `UPDATE mesures SET tour_ceinture = $1, fesse = $2, cuisse = $3, longueur_pantalon = $4, bas_pantalon = $5, tour_cou = $6, epaules = $7, tour_poitrine = $8, tour_bras = $9, manche = $10, tour_manche = $11, longueur_haut = $12, blouse = $13, taille = $14 WHERE id = $15`
   await db.query(SQL2, args.mesures)
 })
 
