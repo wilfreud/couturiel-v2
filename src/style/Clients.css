@@ -10,6 +10,7 @@
 }
 
 .add-client{
+    border: solid 2px var(--secondary-color);
     width: fit-content;
     /* box-sizing: content-box; */
     background-color: var(--primary-color);

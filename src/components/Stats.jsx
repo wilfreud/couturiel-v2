@@ -13,7 +13,7 @@ function Stats(){
         navigate(-1)
     }
     
-    const [ dataType, setDataType ] = useState('year')
+    const [ dataType, setDataType ] = useState('month')
 
     const APIS = {
         'month' : window.api.getMonthlyStats,
@@ -34,7 +34,7 @@ function Stats(){
 
     useEffect(() => {
         setUserData({
-            labels : STATS?.map((item) => item.grouper || '-'),
+            labels : STATS?.map((item, i) => (dataType === "month") ? item?.grouper : i+1 || '-'),
             datasets : [{
                 label : "Entrées", 
                 data : STATS?.map((item) => Number(item.entrees) || 0),
@@ -65,8 +65,7 @@ function Stats(){
             <div className="go-back">
                 {SVGS.back}
 
-                <select className="select-input" defaultValue="" onChange={(e) => {console.log(e.target.value);setDataType(e?.target?.value)}}>
-                    <option value="" disabled hidden>Periode d'affichage</option>
+                <select className="select-input" defaultValue="month" onChange={(e) => setDataType(e?.target?.value)}>
                     <option value="month">Mensuel</option>
                     <option value="year">Annuel</option>
                 </select>

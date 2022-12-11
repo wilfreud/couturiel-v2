@@ -79,7 +79,7 @@
 
 .element-name{
     font-weight: bold;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     user-select: none;
 }
 
@@ -89,10 +89,14 @@
 
 .container-sum .element-value{
     font-size: 1.5em;
-    border-bottom: dotted 2px var(--primary-color);
+    border-bottom: dotted 2px var(--secondary-color);
 }
 
 .cmds-count{
     position: absolute;
     bottom: 0;
+}
+
+.element-value{
+    color: var(--secondary-color)
 }

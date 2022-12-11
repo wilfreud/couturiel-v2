@@ -47,3 +47,7 @@
     border: solid 1px var(--primary-color); 
     cursor: pointer;
 }
+
+.blacken{
+    color: var(--secondary-color);
+}

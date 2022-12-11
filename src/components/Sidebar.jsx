@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import LogoutModal from './LogoutModal'
-import logo from '../assets/logo.png'
+import logo from '../assets/logo-alt.png'
 import '../style/Sidebar.css'
 import Settings from './Settings'
 

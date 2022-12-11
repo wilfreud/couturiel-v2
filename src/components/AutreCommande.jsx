@@ -36,7 +36,7 @@ function AutreCommande() {
         <path d="M5.25 5.25a3 3 0 00-3 3v10.5a3 3 0 003 3h10.5a3 3 0 003-3V13.5a.75.75 0 00-1.5 0v5.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5V8.25a1.5 1.5 0 011.5-1.5h5.25a.75.75 0 000-1.5H5.25z" />
         </svg>,
 
-        plusCircle : <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+        plusCircle : <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#272727" className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
     }
@@ -61,8 +61,8 @@ function AutreCommande() {
     }
 
     function prushProduct(){
-        if(!getValues('quantite') || getValues('quantite') < 1) {
-            toast.error("Quantité incorrecte", defaultToast)
+        if(!getValues('quantite') || getValues('quantite') < 1 || !getValues('modele')) {
+            toast.error("Quantité / modèle incorrecte", defaultToast)
             return
         }
 
@@ -104,7 +104,7 @@ function AutreCommande() {
         }
 
 
-        <form className="form-body" onSubmit={handleSubmit(handleForm)}>
+        <form className="form-body override-autre-cmd-input" onSubmit={handleSubmit(handleForm)}>
 
             <div className="form-part">
                 <input type="text" {...register('proprietaire', { required: true})} className="form-field" placeholder="Proprietaire" />
@@ -113,7 +113,7 @@ function AutreCommande() {
 
             <div className="form-part">
                 <select {...register('modele')} defaultValue="" className="input-select">
-                    <option value="" disabled></option>
+                    <option value="" disabled>Choisir modèle</option>
                     <optgroup label="Getzner">
                     {
                         getzner?.map((mod, index) => (
@@ -145,7 +145,7 @@ function AutreCommande() {
 
             <div className="form-part">
                 <input type="text" {...register('remise')} className="form-field" placeholder="Remise" />
-                <span> Total : {computeTotal()} </span>
+                <span className="golden"> Total : {computeTotal()} </span>
             </div>
 
             <input type="submit" value="Imprimer" className="validate-form"/>

@@ -149,7 +149,7 @@ function Comptabilite() {
                 <input type="date" className="pick-date" onChange={filterByDate} />
             </div>
             
-            <div className="caisse-table">
+            <div className="caisse-table override-input-color">
                 <div className="table-header table-row">
                     <div className="table-cell">
                         <div className="table-sub-cell"> </div>

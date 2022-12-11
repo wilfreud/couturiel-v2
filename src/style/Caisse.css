@@ -19,6 +19,7 @@
 
 .go-back svg{
     cursor: pointer;
+    color: var(--secondary-color);
     /* box-sizing: border-box; */
     width: 35px;
     /* background-color: var(--secondary-color); */
@@ -59,11 +60,12 @@
     font-weight: bolder;
     margin-right: 1em;
     user-select: none;
+    color: var(--secondary-color);
 }
 
 .total-value{
     font-size: 1.3em;
-    color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 .error{
@@ -116,7 +118,7 @@ input.submit{
 .pick-date{
     outline: none;
     border: none;
-    background-color: transparent;
+    background-color: var(--secondary-color);
     color: var(--primary-color);
     border-bottom: solid 1px var(--primary-color);
 }
@@ -128,4 +130,8 @@ input.submit{
     color: red;
     cursor:pointer;
     display: flex;
+}
+
+.override-input-color input{
+    color: var(--secondary-color);
 }

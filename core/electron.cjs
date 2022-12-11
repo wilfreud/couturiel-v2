@@ -439,13 +439,13 @@ ipcMain.handle('manual-auto-decrement', async(event, args) => {
 
 
 ipcMain.handle('get-yearly-stats', async(event, args) => {
-  const SQL = "SELECT date_part('month', date) AS grouper, SUM(entree) AS entrees, SUM(sortie) AS sorties FROM caisse GROUP BY grouper ORDER BY grouper DESC"
+  const SQL = "SELECT date_part('month', date) AS grouper, SUM(entree) AS entrees, SUM(sortie) AS sorties FROM caisse GROUP BY grouper ORDER BY grouper ASC"
   const res = await db.query(SQL)
   return res.rows
 })
 
 ipcMain.handle('get-monthly-stats', async(event, args) => {
-  const SQL = "SELECT date_part('week', date) AS grouper, SUM(entree) AS entrees, SUM(sortie) AS sorties FROM caisse GROUP BY grouper ORDER BY grouper DESC"
+  const SQL = "SELECT date_part('week', date) AS grouper, SUM(entree) AS entrees, SUM(sortie) AS sorties FROM caisse GROUP BY grouper ORDER BY grouper ASC"
   const res = await db.query(SQL)
   return res.rows
 })
