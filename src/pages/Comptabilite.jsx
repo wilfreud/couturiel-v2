@@ -9,7 +9,8 @@ function Comptabilite(){
         caisse : "caisse",
         cg : 'comptagene',
         salaires : 'salaires',
-        autre_commande : 'autreCommande'
+        autre_commande : 'autreCommande',
+        graphe : 'graphe'
     }
 
 
@@ -31,6 +32,10 @@ function Comptabilite(){
 
                 <div className="option-ocur" onClick={() =>{ navigate(NAV_OPTIONS.autre_commande)} }>
                     <p>Autre Facture</p>
+                </div>
+
+                <div className="option-ocur" onClick={() =>{ navigate(NAV_OPTIONS.graphe)} }>
+                    <p>Graphe</p>
                 </div>
             </div>
             <ToastContainer />

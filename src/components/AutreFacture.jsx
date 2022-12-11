@@ -23,7 +23,7 @@ function FactureClient({ closeModal, data }) {
     const month = new Date().getMonth() + 1
     const formatedMonth = String(month).padStart(2, 0)
     
-    return `BWCA-${formatedMonth}-${formatID}`
+    return `RJCA-${formatedMonth}-${formatID}`
   }
 
 // console.log((data?.modeles))

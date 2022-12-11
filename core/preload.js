@@ -214,6 +214,16 @@ contextBridge.exposeInMainWorld('api', {
     manualAutoDecrement : (args) => {
         const response = ipcRenderer.invoke('manual-auto-decrement', args)
         return response
+    },
+
+    getYearlyStats : (args) => {
+        const response = ipcRenderer.invoke('get-yearly-stats', args)
+        return response
+    },
+
+    getMonthlyStats : (args) => {
+        const response = ipcRenderer.invoke('get-monthly-stats', args)
+        return response
     }
  
 

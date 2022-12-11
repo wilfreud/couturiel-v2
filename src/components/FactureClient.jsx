@@ -1,6 +1,6 @@
 import ReactDom from 'react-dom'
 import { useReactToPrint } from 'react-to-print'
-import  { useRef } from 'react'
+import { useRef } from 'react'
 import { useQuery } from 'react-query'
 import '../style/Facture.css'
 import logo from '../assets/logo-alt.png'
@@ -45,7 +45,7 @@ function FactureClient({ closeModal, ID }) {
     const month = new Date().getMonth() + 1
     const formatedMonth = String(month).padStart(2, 0)
     
-    return `BWC-${formatedMonth}-${formatID}`
+    return `RJC-${formatedMonth}-${formatID}`
   }
 
   const TODAY = new Date()

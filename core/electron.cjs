@@ -436,3 +436,16 @@ ipcMain.handle('manual-auto-decrement', async(event, args) => {
   const SQL = 'UPDATE infos_modeles SET quantite = $1 WHERE modele = $2'
   await db.query(SQL, args)
 })
+
+
+ipcMain.handle('get-yearly-stats', async(event, args) => {
+  const SQL = "SELECT date_part('month', date) AS grouper, SUM(entree) AS entrees, SUM(sortie) AS sorties FROM caisse GROUP BY grouper ORDER BY grouper DESC"
+  const res = await db.query(SQL)
+  return res.rows
+})
+
+ipcMain.handle('get-monthly-stats', async(event, args) => {
+  const SQL = "SELECT date_part('week', date) AS grouper, SUM(entree) AS entrees, SUM(sortie) AS sorties FROM caisse GROUP BY grouper ORDER BY grouper DESC"
+  const res = await db.query(SQL)
+  return res.rows
+})
