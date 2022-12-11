@@ -206,10 +206,18 @@ function Produits(){
 
 
                             <div className="produit-infos">
-                                <div className="produit-info-line produit-nom"> <span className="golden"> Modèle : </span> {item?.nom_modele} </div>
-                                <div className="produit-info-line produit-taille"> <span className="golden"> Taille : </span> {item?.taille} </div>
-                                <div className="produit-info-line produit-prix"> <span className="golden"> Prix : </span> {item?.prix} </div>
-                                <div className="produit-info-line produit-quantite"> <span className="golden"> Quantité : </span> {item?.quantite} </div>
+                                <div className="produit-info-line produit-nom"> <span className="golden"> Modèle : </span>
+                                    <span className="golden boldit"> {item?.nom_modele} </span> 
+                                </div>
+                                <div className="produit-info-line produit-taille"> <span className="golden"> Taille : </span>
+                                    <span className="golden boldit"> {item?.taille} </span> 
+                                </div>
+                                <div className="produit-info-line produit-prix"> <span className="golden"> Prix : </span>
+                                    <span className="golden boldit"> {item?.prix} </span> 
+                                </div>
+                                <div className="produit-info-line produit-quantite"> <span className="golden"> Quantité : </span>
+                                    <span className="golden boldit"> {item?.quantite} </span> 
+                                </div>
                                 {/* <div className="produit-info-line produit-quantite"> <span className="golden"> ID : </span> {item?.id} </div> */}
 
                             </div>
