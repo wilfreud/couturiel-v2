@@ -14,13 +14,14 @@ function Stats(){
     }
     
     const [ dataType, setDataType ] = useState('month')
+    const [ dateFilter, setDateFilter ] = useState('')
 
     const APIS = {
-        'month' : window.api.getMonthlyStats,
-        'year' : window.api.getYearlyStats
+        'month' : () => window.api.getMonthlyStats(dateFilter),
+        'year' : () => window.api.getYearlyStats(dateFilter)
     }
 
-    const { data : STATS  } = useQuery(`get-${dataType}-stats`, APIS[dataType || 'month'], { 
+    const { data : STATS  } = useQuery([`get-${dataType}-stats`, dateFilter], APIS[dataType || 'month'], { 
         refetchOnWindowFocus : false
     })
 
@@ -70,7 +71,7 @@ function Stats(){
                     <option value="year">Annuel</option>
                 </select>
 
-                <input type="month" name="" id="" />
+                <input type="month" onChange={e => setDateFilter(e.target.value)} />
             </div>
         
         {
