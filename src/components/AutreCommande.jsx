@@ -61,8 +61,8 @@ function AutreCommande() {
     }
 
     function prushProduct(){
-        if(!getValues('quantite') || getValues('quantite') < 1) {
-            toast.error("Quantité incorrecte", defaultToast)
+        if(!getValues('quantite') || getValues('quantite') < 1 || !getValues('modele')) {
+            toast.error("Quantité/Modèle incorrecte", defaultToast)
             return
         }
 
