@@ -42,42 +42,44 @@ function ClientPanel({closeModal, editMode, ID, refresh}){
     function handleForm(data){
 
         const infos = editMode ? {
-            client : [data.nom, data.prenom, data.tel, data.adresse, ID],
+            client : [data?.nom, data?.prenom, data?.tel, data?.adresse, ID],
             mesures  : [
-                data.tour_ceinture || null,
-                data.fesse || null,
-                data.cuisse || null,
-                data.longueur_pantalon || null,
-                data.bas_pantalon || null,
-                data.tour_cou || null,
-                data.epaules || null,
-                data.tour_poitrine || null,
-                data.tour_bras || null,
-                data.manche || null,
-                data.tour_manche || null,
-                data.longueur_haut || null,
-                data.blouse || null,
-                data.taille || null,
+                data?.tour_ceinture || null,
+                data?.fesse || null,
+                data?.cuisse || null,
+                data?.longueur_pantalon || null,
+                data?.bas_pantalon || null,
+                data?.tour_cou || null,
+                data?.epaules || null,
+                data?.tour_poitrine || null,
+                data?.tour_bras || null,
+                data?.manche || null,
+                data?.tour_manche || null,
+                data?.longueur_haut || null,
+                data?.blouse || null,
+                data?.taille || null,
+                data?.mollet || null,
                 EM_data?.mesuresid
             ]
         }
         : {
-            client : [data.nom, data.prenom, data.tel, data.adresse],
+            client : [data?.nom, data?.prenom, data?.tel, data?.adresse],
             mesures  : [
-                data.tour_ceinture || null,
-                data.fesse || null,
-                data.cuisse || null,
-                data.longueur_pantalon || null,
-                data.bas_pantalon || null,
-                data.tour_cou || null,
-                data.epaules || null,
-                data.tour_poitrine || null,
-                data.tour_bras || null,
-                data.manche || null,
-                data.tour_manche || null,
-                data.longueur_haut || null,
-                data.blouse || null,
-                data.taille || null
+                data?.tour_ceinture || null,
+                data?.fesse || null,
+                data?.cuisse || null,
+                data?.longueur_pantalon || null,
+                data?.bas_pantalon || null,
+                data?.tour_cou || null,
+                data?.epaules || null,
+                data?.tour_poitrine || null,
+                data?.tour_bras || null,
+                data?.manche || null,
+                data?.tour_manche || null,
+                data?.longueur_haut || null,
+                data?.blouse || null,
+                data?.taille || null,
+                data?.mollet || null
             ]
         }
         // console.log(data)
@@ -132,20 +134,21 @@ function ClientPanel({closeModal, editMode, ID, refresh}){
                     </div>
 
                     <div className="form-part second-part">
-                        <input type="text" className="form-field" {...register('tour_ceinture')}  placeholder='Tour de ceinture' defaultValue={ editMode ? EM_data?.c : null } />
-                        <input type="text" className="form-field" {...register('fesse')}  placeholder='Fesse' defaultValue={ editMode ? EM_data?.e : null } />
-                        <input type="text" className="form-field" {...register('cuisse')}  placeholder='Cuisse' defaultValue={ editMode ? EM_data?.m : null } />
-                        <input type="text" className="form-field" {...register('longueur_pantalon')}  placeholder='Longueur pantalon' defaultValue={ editMode ? EM_data?.la : null } />
-                        <input type="text" className="form-field" {...register('bas_pantalon')}  placeholder='Bas pantalon' defaultValue={ editMode ? EM_data?.lb : null } />
-                        <input type="text" className="form-field" {...register('tour_cou')}  placeholder='Tour de cou' defaultValue={ editMode ? EM_data?.s : null } />
-                        <input type="text" className="form-field" {...register('epaules')}  placeholder='Epaules' defaultValue={ editMode ? EM_data?.k : null } />
-                        <input type="text" className="form-field" {...register('tour_poitrine')}  placeholder='Tour de poitrine' defaultValue={ editMode ? EM_data?.f : null } />
-                        <input type="text" className="form-field" {...register('tour_bras')}  placeholder='Tour de bras' defaultValue={ editMode ? EM_data?.lp : null } />
-                        <input type="text" className="form-field" {...register('manche')}  placeholder='Manche' defaultValue={ editMode ? EM_data?.br : null } />
-                        <input type="text" className="form-field" {...register('tour_manche')}  placeholder='Tour de manche' defaultValue={ editMode ? EM_data?.ba : null } />
-                        <input type="text" className="form-field" {...register('longueur_haut')}  placeholder='Longueur haut' defaultValue={ editMode ? EM_data?.poignee : null } />
-                        <input type="text" className="form-field" {...register('blouse')}  placeholder='Blouse' defaultValue={ editMode ? EM_data?.mollet : null } />
-                        <input type="text" className="form-field" {...register('taille')}  placeholder='Taille' defaultValue={ editMode ? EM_data?.mollet : null } />
+                        <input type="text" className="form-field" {...register('tour_ceinture')}  placeholder='Tour de ceinture' />
+                        <input type="text" className="form-field" {...register('fesse')}  placeholder='Fesse' />
+                        <input type="text" className="form-field" {...register('cuisse')}  placeholder='Cuisse' />
+                        <input type="text" className="form-field" {...register('longueur_pantalon')}  placeholder='Longueur pantalon' />
+                        <input type="text" className="form-field" {...register('bas_pantalon')}  placeholder='Bas pantalon' />
+                        <input type="text" className="form-field" {...register('tour_cou')}  placeholder='Tour de cou' />
+                        <input type="text" className="form-field" {...register('epaules')}  placeholder='Epaules' />
+                        <input type="text" className="form-field" {...register('tour_poitrine')}  placeholder='Tour de poitrine' />
+                        <input type="text" className="form-field" {...register('tour_bras')}  placeholder='Tour de bras' />
+                        <input type="text" className="form-field" {...register('manche')}  placeholder='Manche' />
+                        <input type="text" className="form-field" {...register('tour_manche')}  placeholder='Tour de manche' />
+                        <input type="text" className="form-field" {...register('longueur_haut')}  placeholder='Longueur haut' />
+                        <input type="text" className="form-field" {...register('blouse')}  placeholder='Blouse' />
+                        <input type="text" className="form-field" {...register('taille')}  placeholder='Taille' />
+                        <input type="text" className="form-field" {...register('mollet')}  placeholder='Mollet' />
                     </div>
 
                         <button type="submit" className="validate-form"> Enregistrer </button>

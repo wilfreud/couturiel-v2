@@ -56,7 +56,7 @@ function FactureClient({ closeModal, data }) {
   })
 
   const INFOS = {
-    adresse : 'Liberté',
+    adresse : 'Liberté 1, en face stade Marius Ndiaye',
     telephone : '77 302 83 27 / 77 129 93 93 / 77 258 84 80'
   }
 

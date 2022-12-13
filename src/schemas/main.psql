@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS mesures(
     tour_manche VARCHAR(255),
     longueur_haut VARCHAR(255),
     blouse VARCHAR(255), 
+    mollet VARCHAR(255),
     taille VARCHAR(255)  
 );
 

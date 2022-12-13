@@ -35,7 +35,7 @@ function FactureClient({ closeModal, ID }) {
   })
 
   const INFOS = {
-    adresse : 'Liberté ',
+    adresse : 'Liberté 1, en face stade Marius Ndiaye',
     telephone : '77 302 83 27 / 77 129 93 93 / 77 258 84 80'
   }
 
@@ -62,59 +62,72 @@ function FactureClient({ closeModal, ID }) {
     
         <div className="facture-itself" ref={componentRef} >
 
-          <div className="header-facture facture-part">
-            <img src={logo} alt="Tailor logo" id="logo" />
 
-            <div className="header-desc">
-              <h3> {INFOS.adresse} </h3>
-              <p> {INFOS.telephone} </p>
+          <div className="facture-header-container">
+
+            <div className="facture-header-container-side">
+
+              <div className="header-facture facture-part">
+                <img src={logo} alt="Tailor logo" id="logo" className="override-facture-logo" />
+              </div>
+
+
+              {/* <div className="facture-header-container-side"></div> */}
+
+              <div className="client-facture facture-part">
+
+                <div className="client-info">
+                  <span className="boldit">Date : </span>
+                  <span className="actual-info"> {TODAY.getDate()} / {TODAY.getMonth()+1} / {TODAY.getFullYear()} </span>
+                </div>
+
+                <div className="client-info">
+                  <span className="boldit">Nom : </span>
+                  <span className="actual-info"> {clientData?.prenom} {clientData?.nom} </span>
+                </div>
+
+                <div className="client-info">
+                  <span className="boldit">Adresse : </span>
+                  <span className="actual-info"> {clientData?.adresse} </span>
+                </div>
+
+
+                <div className="client-info">
+                  <span className="boldit">Téléphone : </span>
+                  <span className="actual-info"> {clientData?.tel} </span>
+                </div>
+
+
+              </div>
+
+              
+
             </div>
+
+            <div className="facture-header-container-side">
+              <div className="infos-container">
+                <h1>FACTURE</h1>
+                <p>Facture N° {FACT_PREFIX()}</p>
+              </div>
+            </div>
+
           </div>
 
-          <div className="client-facture facture-part">
-
-            <div className="client-info">
-              <span className="boldit">Facture N° {FACT_PREFIX()}</span>
-              <span className="actual-info">  </span>
-            </div>
-
-            <div className="client-info">
-              <span className="underline">Date</span>
-              <span className="actual-info"> : {TODAY.getDate()} / {TODAY.getMonth()+1} / {TODAY.getFullYear()} </span>
-            </div>
-
-            <div className="client-info">
-              <span className="underline">Client</span>
-              <span className="actual-info"> : {clientData?.prenom} {clientData?.nom} </span>
-            </div>
-
-            <div className="client-info">
-              <span className="underline">Téléphone</span>
-              <span className="actual-info"> : {clientData?.tel} </span>
-            </div>
-
-            <div className="client-info">
-              <span className="underline">Adresse</span>
-              <span className="actual-info"> : {clientData?.adresse} </span>
-            </div>
-
-
-          </div>
 
           <div className="content-facture facture-part">
 
             <div className="facture-table-header facture-table-row">
-              <div className="table-cell">DESIGNATION</div>
               <div className="table-cell">QUANTITE</div>
+              <div className="table-cell">DESIGNATION</div>
               <div className="table-cell">PRIX UNITAIRE</div>
               <div className="table-cell">PRIX TOTAL</div>
             </div>
 
             {
               factureData?.map((element, index) => (
-                <div className="facture-table-row facture-table-body" key={index}>
-                  <div className="table-cell"> {element?.nom_modele} </div>
+                <div className={`facture-table-row facture-table-body ${(index%2) ? "grayit" : ""}`} key={index}>
                   <div className="table-cell"> {element?.quantite} </div>
+                  <div className="table-cell"> {element?.nom_modele} </div>
                   <div className="table-cell"> {element?.prix} </div>
                   <div className="table-cell"> {element?.quantite * element?.prix} </div>
                 </div>
@@ -154,6 +167,10 @@ function FactureClient({ closeModal, ID }) {
               <p className="underline"> Le Directeur </p>
             </div>
 
+          </div>
+
+          <div className="facture-end facture-part">
+            
           </div>
         </div>
     </div>

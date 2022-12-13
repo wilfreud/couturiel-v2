@@ -112,6 +112,9 @@ function ClientView( {closeModal, ID} ){
                 <div className="mesure-cell"> TAILLE : 
                     <span className="data"> { data?.taille } </span> 
                 </div>
+                <div className="mesure-cell"> MOLLET : 
+                    <span className="data"> { data?.mollet } </span> 
+                </div>
             </div>
         </div>
 

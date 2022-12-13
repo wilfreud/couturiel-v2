@@ -111,7 +111,7 @@ function Commandes(){
             <Searchbar setSearch={setFindString} />
             <div className="component-body">
             
-                <select name="type-commandes" defaultValue={finishedCommands} data-status={finishedCommands} className="set-commandes-type input-select" onClick={ (e) => setFinishedCommands(e.target.value)}>
+                <select name="type-commandes" defaultValue={false} data-status={finishedCommands} className="set-commandes-type input-select" onClick={ (e) => setFinishedCommands(e.target.value)}>
                     <option value={false}>En cours</option>
                     <option value={true}>Terminées</option>
                 </select>

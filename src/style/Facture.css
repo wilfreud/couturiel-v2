@@ -6,17 +6,19 @@
 
 .facture-itself{
     /* position: absolute; */
-    top: 0;
-    left: 0;
-    width: 100%;
+    /* display: grid; */
+    margin-left: auto;
+    margin-right: auto;
+    place-self: center;
+    /* width: 60%; */
     /* height: 100%; */
     background-color: white;
     color: black;
-    padding: 1em;
+    padding: 3em;    
 }
 
 .facture-part{
-    margin-bottom: 3em;
+    margin-bottom: 2em;
 }
 
 #logo{
@@ -141,3 +143,60 @@
     font-weight: 600;
 }
 
+.client-info .actual-info{
+    border-bottom: dotted;
+    letter-spacing: .05em;
+}
+
+#logo.override-facture-logo{
+    width: 70%;
+    padding-left: 1em;
+}
+
+.facture-header-container{
+    position: relative;
+    display: grid;
+    /* background-color: red; */
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.facture-header-container-side:nth-of-type(2){
+    position: relative;
+    background: blue;
+    background-image: url('../assets/motifs_bg.png');
+    background-size: cover;
+    width: 90%;
+    display: grid;
+    place-content: center;
+    place-items: center;
+}
+
+.facture-header-container-side:nth-of-type(1){
+    /* display: grid; */
+    /* place-items: center; */
+    font-size: 1.3em;
+}
+
+.facture-header-container-side .infos-container{
+    position: absolute;
+    display: grid;
+    place-items: center;
+    color: white;
+    background-color: black;
+    width: 90%;
+    padding: .5em 0;
+}
+
+.facture-header-container-side .infos-container h1{
+    margin-bottom: 0;
+}
+
+.facture-header-container-side .infos-container p{
+    margin-bottom: 3em;
+    font-weight: lighter;
+}
+
+.grayit{
+    background-color: rgba(128, 128, 128, 0.51);
+}
