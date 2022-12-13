@@ -116,7 +116,7 @@ input.submit{
 .pick-date{
     outline: none;
     border: none;
-    background-color: transparent;
+    background-color: var(--variant-color);
     color: var(--primary-color);
     border-bottom: solid 1px var(--primary-color);
 }
@@ -128,4 +128,11 @@ input.submit{
     color: red;
     cursor:pointer;
     display: flex;
+}
+
+.table-row.table-body.ignore-line .submit{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    outline: none;
+    border: none;
 }

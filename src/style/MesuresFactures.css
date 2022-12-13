@@ -18,3 +18,8 @@
     display: grid;
     justify-content: center;
 }
+
+.mesures{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}

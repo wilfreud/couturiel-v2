@@ -42,68 +42,76 @@ function MesuresClient({ closeModal, ID }){
 
                 <div className="body-facture facture-part override">
                     <div className="client-info">
-                        <span className="underline">Client</span>
-                        <span className="actual-info"> : {data?.prenom} {data?.nom} </span>
+                        <span className="boldit">Client: </span>
+                        <span className="actual-info">{data?.prenom} {data?.nom} </span>
                     </div>
 
                     <div className="client-info">
-                        <span className="underline">Téléphone</span>
-                        <span className="actual-info"> : {data?.tel} </span>
+                        <span className="boldit">Téléphone: </span>
+                        <span className="actual-info">{data?.tel} </span>
                     </div>
                 </div>
 
 
             <div className="mesures">
                 
-                <div className="mesure-cell"> C : 
-                    <span className="data"> { data?.c } </span> 
+                <div className="mesure-cell"> TOUR DE CEINTURE : 
+                    <span className="data"> { data?.tour_ceinture } </span> 
                 </div>
                 
-                <div className="mesure-cell"> E : 
-                    <span className="data"> { data?.e } </span> 
+                <div className="mesure-cell"> FESSE : 
+                    <span className="data"> { data?.fesse } </span> 
                 </div>
                 
-                <div className="mesure-cell"> M : 
-                    <span className="data"> { data?.m } </span> 
+                <div className="mesure-cell"> CUISSE : 
+                    <span className="data"> { data?.cuisse } </span> 
                 </div>
                 
-                <div className="mesure-cell"> La : 
-                    <span className="data"> { data?.la } </span> 
+                <div className="mesure-cell"> LONGUEUR PANTALON : 
+                    <span className="data"> { data?.longueur_pantalon } </span> 
                 </div>
                 
-                <div className="mesure-cell"> Lb : 
-                    <span className="data"> { data?.lb } </span> 
+                <div className="mesure-cell"> BAS PANTALON : 
+                    <span className="data"> { data?.bas_pantalon } </span> 
                 </div>
                 
-                <div className="mesure-cell"> S : 
-                    <span className="data"> { data?.s } </span> 
+                <div className="mesure-cell"> TOUR DE COU : 
+                    <span className="data"> { data?.tour_cou } </span> 
                 </div>
                 
-                <div className="mesure-cell"> K : 
-                    <span className="data"> { data?.k } </span> 
+                <div className="mesure-cell"> EPAULES : 
+                    <span className="data"> { data?.epaules } </span> 
                 </div>
                 
-                <div className="mesure-cell"> F : 
-                    <span className="data"> { data?.f } </span> 
+                <div className="mesure-cell"> TOUR DE POITRINE : 
+                    <span className="data"> { data?.tour_poitrine } </span> 
                 </div>
                 
-                <div className="mesure-cell"> Lp : 
-                    <span className="data"> { data?.lp } </span> 
+                <div className="mesure-cell"> TOUR DE BRAS : 
+                    <span className="data"> { data?.tour_bras } </span> 
                 </div>
                 
-                <div className="mesure-cell"> Br : 
-                    <span className="data"> { data?.br } </span> 
+                <div className="mesure-cell"> MANCHE : 
+                    <span className="data"> { data?.manche } </span> 
                 </div>
                 
-                <div className="mesure-cell"> Ba : 
-                    <span className="data"> { data?.ba } </span> 
+                <div className="mesure-cell"> TOUR DE MANCHE : 
+                    <span className="data"> { data?.tour_manche } </span> 
                 </div>
                 
-                <div className="mesure-cell"> Poignée : 
-                    <span className="data"> { data?.poignee } </span> 
+                <div className="mesure-cell"> LONGUEUR HAUT : 
+                    <span className="data"> { data?.longueur_haut } </span> 
                 </div>
                 
-                <div className="mesure-cell"> Mollet : 
+                <div className="mesure-cell"> BLOUSE : 
+                    <span className="data"> { data?.blouse } </span> 
+                </div>
+
+                <div className="mesure-cell"> TAILLE : 
+                    <span className="data"> { data?.taille } </span> 
+                </div>
+
+                <div className="mesure-cell"> MOLLET : 
                     <span className="data"> { data?.mollet } </span> 
                 </div>
             </div>
