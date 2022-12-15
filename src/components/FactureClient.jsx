@@ -23,10 +23,19 @@ function FactureClient({ closeModal, ID }) {
   </svg>
   
 }
+  function FACT_PREFIX(){
+    // console.log(facturationInfos)
+    const formatID = String(facturationInfos?.count).padStart(3, 0)
+    const month = new Date().getMonth() + 1
+    const formatedMonth = String(month).padStart(2, 0)
+    
+    return `RJC-${formatedMonth}-${formatID}`
+  }
 
   const componentRef = useRef()
   const handlePrint = useReactToPrint({
     content : () => componentRef.current,
+    pageStyle : "@page { size: A5; }",
     onAfterPrint : () => {
       window.api.setFacturesCount(facturationInfos?.count + 1)
         .catch((err) => console.error("Error updating facture count ! :::", err))
@@ -37,15 +46,6 @@ function FactureClient({ closeModal, ID }) {
   const INFOS = {
     adresse : 'Dakar, Medina, Rue 17 x 6',
     telephone : '77 284 93 93 / 78 115 45 15'
-  }
-
-  function FACT_PREFIX(){
-    // console.log(facturationInfos)
-    const formatID = String(facturationInfos?.count).padStart(3, 0)
-    const month = new Date().getMonth() + 1
-    const formatedMonth = String(month).padStart(2, 0)
-    
-    return `RJC-${formatedMonth}-${formatID}`
   }
 
   const TODAY = new Date()

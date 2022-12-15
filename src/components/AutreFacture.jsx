@@ -45,7 +45,8 @@ function FactureClient({ closeModal, data }) {
   const componentRef = useRef()
   const handlePrint = useReactToPrint({
     content : () => componentRef.current,
-    onAfterPrint : () => {
+    pageStyle : "@page { size: A4; }",
+    FonAfterPrint : () => {
       decrementStock()
       window.api.addEntryToCaisse({entree : data?.total, libelle_entree : FACT_PREFIX(), sortie : null, libelle_sortie : null})
         .catch((err) => console.err("Error saving this in entries ::: ", err))

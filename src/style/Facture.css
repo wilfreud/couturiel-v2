@@ -13,6 +13,7 @@
     background-color: white;
     color: black;
     padding: 1em;
+    font-size: .7em;
 }
 
 .facture-part{
@@ -104,32 +105,36 @@
     color: white;
 }
 
+.facture-table-header.facture-table-row .table-cell{
+    background: var(--secondary-color);
+}
+
 .facture-table-body .table-cell{
     font-weight: 200;
-    border-left: solid 2px var(--secondary-color);
+    border-left: solid 1px var(--secondary-color);
 }
 
 .facture-table-body .table-cell:last-child{
-    border-right: solid 2px var(--secondary-color);
+    border-right: solid 1px var(--secondary-color);
 
 }
 
 .facture-table-row.facture-table-body .table-cell{
-    border-bottom: solid 2px var(--secondary-color);
+    border-bottom: solid 1px var(--secondary-color);
 }
 
 .facture-table-header.facture-table-row.ignore-style .table-cell{
     background-color: white;
     color: black;
-    border-bottom: solid 2px var(--secondary-color);
+    border-bottom: solid 1px var(--secondary-color);
 }
 
 .facture-table-header.facture-table-row.ignore-style .table-cell:first-child{
-    border-left: solid 2px var(--secondary-color);
+    border-left: solid 1px var(--secondary-color);
 }
 
 .facture-table-header.facture-table-row.ignore-style .table-cell:last-child{
-    border-right: solid 2px var(--secondary-color);
+    border-right: solid 1px var(--secondary-color);
 }
 
 .underline{
