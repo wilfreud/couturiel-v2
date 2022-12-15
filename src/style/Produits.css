@@ -72,15 +72,16 @@
 
 .produit-item{
     scroll-snap-align: start;
-    background-color: var(--secondary-color-variant);
+    /* background-color: var(--secondary-color-variant); */
+    background-color: transparent;
     padding: 1em;
     display: grid;
     place-content: center;
     place-items: center;
     border-radius: 4px;
-    border: solid 1px var(--primary-color);
+    border: solid 1px var(--secondary-color);
     position: relative;
-    transition: .3s ease-in;
+    transition: .5s ease-in;
     transition-delay: 2s;
 }
 
@@ -95,10 +96,12 @@
     height: 100%;
     user-select: none;
     pointer-events: none;
+    border-radius: 4px;
 }
 
 .produit-infos{
     margin-top: 1em;
+    color: var(--secondary-color);
 }
 
 .produit-info-line{
