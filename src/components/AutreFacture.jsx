@@ -56,8 +56,8 @@ function FactureClient({ closeModal, data }) {
   })
 
   const INFOS = {
-    adresse : 'Dakar, Medina, Rue 17 x 6',
-    telephone : '77 284 93 93 / 78 115 45 15'
+    adresse : 'Dieuppeul 4',
+    telephone : '78 149 47 36 / 33 867 34 23'
   }
 
 
