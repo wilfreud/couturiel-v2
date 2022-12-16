@@ -45,7 +45,7 @@ function FactureClient({ closeModal, ID }) {
     const month = new Date().getMonth() + 1
     const formatedMonth = String(month).padStart(2, 0)
     
-    return `RJC-${formatedMonth}-${formatID}`
+    return `NWC-${formatedMonth}-${formatID}`
   }
 
   const TODAY = new Date()
