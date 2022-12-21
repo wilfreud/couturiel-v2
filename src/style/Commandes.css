@@ -1,0 +1,23 @@
+.option-item{
+    width: 10px;
+    height: 10px;
+}
+
+.table-cell.options[data-status="true"] .option-btn:not(:nth-child(2)){
+    display: none;
+    padding: 3em
+}
+
+.modal-content.override-fsz{
+    font-size: .8em;
+}
+
+/* .add-product.override-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em 2em;
+} */
+
+.sauvegarder{
+    cursor: pointer;
+}

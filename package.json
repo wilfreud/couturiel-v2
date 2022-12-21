@@ -1,0 +1,48 @@
+{
+  "name": "sassoumane",
+  "private": true,
+  "version": "1.0.0",
+  "author": "Commodore",
+  "description": "Desktop shop management system for clients, products, and orders",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "./",
+  "main": "core/electron.cjs",
+  "scripts": {
+    "dev": "concurrently -k \"vite\" \"yarn start-electron\"",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start-electron": "cross-env IS_DEV=true nodemon --watch ./core/* --exec \"electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "dist": "yarn build && electron-builder"
+  },
+  "dependencies": {
+    "chart.js": "^4.0.1",
+    "pg": "^8.8.0",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.0.1",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.38.0",
+    "react-query": "^3.39.2",
+    "react-router-dom": "^6.4.1",
+    "react-to-print": "^2.14.10",
+    "react-toastify": "^9.0.8",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.1.0",
+    "concurrently": "^7.4.0",
+    "cross-env": "^7.0.3",
+    "electron": "^21.0.0",
+    "electron-builder": "^23.6.0",
+    "electron-devtools-installer": "^3.2.0",
+    "nodemon": "^2.0.20",
+    "postinstall": "^0.8.0",
+    "vite": "^3.1.0"
+  },
+  "solutions": {
+    "got": "^12.1.0"
+  }
+}

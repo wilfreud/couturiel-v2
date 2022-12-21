@@ -1,0 +1,24 @@
+.popup.settings{
+    background-image: none;
+    font-size: 1em;
+}
+
+.modal-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* gap: 2em; */
+}
+
+.modal-content.insettings{
+    /* background-color: red; */
+    display: grid;
+}
+
+.modal-content.insettings:not(:last-child){
+    border-right: solid 3px white;
+}
+
+.modal-content.insettings .form-field{
+    width: 20em;
+}
+

@@ -1,0 +1,26 @@
+.component-body.cards-container{
+    height: 100%;
+    display: flex;
+    place-items: center;
+    place-content: center;
+}
+
+.category-card{
+    margin: 0 2em;
+    background-color: var(--secondary-color);
+    /* box-shadow: 1px 1px 20px 1px var(--primary-color); */
+    width: 100px;
+    height: 100px;
+    display: flex;
+    place-items: center;
+    place-content: center;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.category-card-title{
+    user-select: none;
+    color: var(--primary-color);
+    font-weight: bold;
+}

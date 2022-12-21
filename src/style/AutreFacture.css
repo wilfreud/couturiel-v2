@@ -1,0 +1,20 @@
+.form-body{
+    padding: 8em;
+    DISPLAY: GRID;
+    place-content: center;
+    width: 60%;
+    gap: 2em;
+}
+
+hr{
+    width: 100%; 
+}
+
+/* .override-autre-cmd-input .form-field{ */
+    /* color: var(--secondary-color); */
+/* } */
+
+.override-autre-cmd-input .validate-form{
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}

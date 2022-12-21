@@ -1,0 +1,39 @@
+#root {
+  /* max-width: 1280px; */
+  margin: 0 auto;
+  /* padding: 2rem; */
+  /* height:100vh; */
+  text-align: center;
+}
+.App-main-container{
+  position: relative;
+}
+
+#modal-portal:has(*){
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, .85);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  place-content: center;
+  place-items: center;
+} 
+
+#modal-portal::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.599);
+  z-index: -2;
+  filter: blur(50px);
+}
+
+.warning-message{
+  color: var(--primary-color);
+}

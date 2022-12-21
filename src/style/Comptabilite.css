@@ -1,0 +1,102 @@
+.compta-options{
+    /* background: red; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* background: red; */
+    /* place-content: center; */
+    place-items: center;
+    height: 100%;
+}
+
+.option-ocur{
+    background: var(--secondary-color);
+    width: 130px;
+    height: 130px;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0 20px;
+    color: var(--primary-color);
+    box-shadow: 0 0 30px 5px #ccbe8d16;
+    cursor: pointer;
+    /* font-size: 1.2em; */
+}
+
+.options{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.options .option-btn{
+    width: 22px;
+    cursor: pointer;
+    display: flex;
+    margin: 0 .5em;
+}
+
+.option-btn svg{
+    pointer-events: none;
+    color: white;
+}
+
+.table-row.prod-row{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.table-cell{
+    text-align: center;
+}
+
+.table-cell:not(.table-cell:has(.option-btn)){
+    place-content: center;
+    place-items: center;
+    display: grid;
+}
+
+.table-header .table-cell:first-child{
+    padding: 2px;
+}
+
+.set-commandes-type{
+    position: absolute;
+    margin: 1em;
+    padding: .2em .4em;
+    border-radius: 4px;
+}
+
+.container-body{
+    /* background: red; */
+    height: 50%;
+    display: flex;
+    justify-content: space-around;
+    place-items: center;
+    font-size: 1.4em;
+}
+
+.element-name{
+    font-weight: bold;
+    color: var(--secondary-color);
+    user-select: none;
+}
+
+.container-sum{
+    font-size: 1.6em;
+}
+
+.container-sum .element-value{
+    font-size: 1.5em;
+    border-bottom: dotted 2px var(--secondary-color);
+}
+
+.cmds-count{
+    position: absolute;
+    bottom: 0;
+}
+
+.element-value{
+    color: var(--secondary-color)
+}

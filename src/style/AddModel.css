@@ -1,0 +1,22 @@
+.main-container{
+    position: relative;
+    height: 100vh;
+}
+
+.select-input{
+    font-style: italic;
+    color: #7B7B7B;
+    transition: all 1s ease;
+}
+
+.select-input option{
+    background-color: var(--secondary-color-variant);
+}
+
+.form-field.categorie{
+    border: none;
+}
+
+.capitalize{
+    text-transform: capitalize;
+}

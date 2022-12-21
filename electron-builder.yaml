@@ -1,0 +1,36 @@
+appId: tailor.dor.app
+asar: true
+directories:
+  output: app/${version}
+
+files:
+- dist
+- core
+
+extraResources :
+  from : "./pictures"
+  to : "pictures"
+
+mac:
+  artifactName: "${productName}_${version}.${ext}"
+  icon : "./logo.icns"
+  target:
+  - dmg
+win:
+  icon : "./logo.ico"
+  target:
+  - target: nsis
+    arch:
+    - x64
+  artifactName: "${productName}_${version}.${ext}"
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  deleteAppDataOnUninstall: false
+linux:
+  category: Development
+  icon : "./logo.ico"
+  target:
+    - "deb"
+    - "rpm"
