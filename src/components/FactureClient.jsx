@@ -35,8 +35,8 @@ function FactureClient({ closeModal, ID }) {
   })
 
   const INFOS = {
-    adresse : 'Mamelles élevage',
-    telephone : '78 498 22 29'
+    adresse : 'Showroom Cité Port à côté de la mosquée Massalikoul',
+    telephone : '+221 77 691 62 06'
   }
 
   function FACT_PREFIX(){
@@ -45,7 +45,7 @@ function FactureClient({ closeModal, ID }) {
     const month = new Date().getMonth() + 1
     const formatedMonth = String(month).padStart(2, 0)
     
-    return `SASS-${formatedMonth}-${formatID}`
+    return `NAD-${formatedMonth}-${formatID}`
   }
 
   const TODAY = new Date()

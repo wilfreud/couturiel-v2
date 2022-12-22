@@ -19,7 +19,7 @@
     color: #fff;
     caret-color: var(--primary-color);
     border-radius: 50px;
-    border: solid 2px var(--primary);
+    border: solid 2px var(--secondary-color);
     padding: 0 4px;
     transition: .5s;
 }

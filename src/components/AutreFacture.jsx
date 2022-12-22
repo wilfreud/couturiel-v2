@@ -23,7 +23,7 @@ function FactureClient({ closeModal, data }) {
     const month = new Date().getMonth() + 1
     const formatedMonth = String(month).padStart(2, 0)
     
-    return `SASSA-${formatedMonth}-${formatID}`
+    return `NADA-${formatedMonth}-${formatID}`
   }
 
 // console.log((data?.modeles))
@@ -56,10 +56,9 @@ function FactureClient({ closeModal, data }) {
   })
 
   const INFOS = {
-    adresse : 'Mamelles élevage',
-    telephone : '78 498 22 29'
+    adresse : 'Showroom Cité Port, à côté de la mosquée Massalikoul',
+    telephone : '+221 77 691 62 06'
   }
-
 
   const TODAY = new Date()
 
