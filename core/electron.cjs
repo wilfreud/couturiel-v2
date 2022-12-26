@@ -158,19 +158,63 @@ ipcMain.handle('delete-client', async(event, args) => {
 })
 
 ipcMain.handle('add-client', async(event, args) => {
-  const SQL = 'INSERT INTO mesures (c, e, m, la, lb, s, k, f, lp, br, ba, poignee, mollet) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING id'
+  const SQL = `INSERT INTO mesures (cou,
+    epaule,
+    poitrine,
+    taille,
+    ceinture,
+    petite_hanche,
+    hanche,
+    hauteur_taille,
+    l_manche_1,
+    l_manche_2,
+    l_haut_1,
+    l_haut_2,
+    l_veste_ou_manteau,
+    l_jupe_t_h,
+    long_jupe_1,
+    long_jupe_2,
+    l_robe_1,
+    l_robe_2,
+    l_pant,
+    tour_de_bras,
+    dessus_poitrine) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21) RETURNING id`
   const res = await db.query(SQL, args.mesures)
+
+  const SQL2 = `INSERT INTO clients (nom, prenom, tel, email, notes, mesuresid) VALUES($1, $2, $3, $4, $5, $6) RETURNING id`
   
-  const SQL2 = 'INSERT INTO clients (nom, prenom, tel, adresse, mesuresid) VALUES($1, $2, $3, $4, $5) RETURNING id'
+  // console.log(SQL2)
   const res2 = await db.query(SQL2, [...args.client, res.rows[0].id])
 
   return res2.rows[0].id
 })
 
 ipcMain.handle('update-client', async(event, args) => {
-  const SQL = 'UPDATE clients SET nom = $1, prenom = $2, tel = $3, adresse = $4 WHERE id = $5'
+  const SQL = 'UPDATE clients SET nom = $1, prenom = $2, tel = $3, email = $4, notes = $5 WHERE id = $6'
   await db.query(SQL, args.client)
-  const SQL2 = 'UPDATE mesures SET c = $1, e = $2, m = $3, la = $4, lb = $5, s = $6, k = $7, f = $8, lp = $9, br = $10, ba = $11, poignee = $12, mollet = $13 WHERE id = $14'
+  const SQL2 = `UPDATE mesures SET 
+  cou = $1,
+  epaule = $2,
+  poitrine = $3,
+  taille = $4,
+  ceinture = $5,
+  petite_hanche = $6,
+  hanche = $7,
+  hauteur_taille = $8,
+  l_manche_1 = $9,
+  l_manche_2 = $10,
+  l_haut_1 = $11,
+  l_haut_2 = $12,
+  l_veste_ou_manteau = $13,
+  l_jupe_t_h = $14,
+  long_jupe_1 = $15,
+  long_jupe_2 = $16,
+  l_robe_1 = $17,
+  l_robe_2 = $18,
+  l_pant = $19,
+  tour_de_bras = $20,
+  dessus_poitrine = $21 
+  WHERE id = $22`
   await db.query(SQL2, args.mesures)
 })
 

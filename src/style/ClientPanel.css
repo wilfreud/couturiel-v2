@@ -21,7 +21,7 @@
 
 .form-part{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1em 2em;
 }
 
@@ -62,4 +62,13 @@
 
 .validate-form:hover{
     letter-spacing: .3px;
+}
+
+.form-field.ignore-capitalize-form-field{
+    text-transform: none;
+}
+
+.form-field.notes{
+    font-style: normal;
+    text-transform: none;
 }

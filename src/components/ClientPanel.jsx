@@ -40,42 +40,59 @@ function ClientPanel({closeModal, editMode, ID, refresh}){
     }
 
     function handleForm(data){
-
+// console.log(data)
+// return
         const infos = editMode ? {
-            client : [data.nom, data.prenom, data.tel, data.adresse, ID],
+            client : [data?.nom, data?.prenom, data?.tel, data?.email, data?.notes, ID],
             mesures  : [
-                data.c || null,
-                data.e || null,
-                data.m || null,
-                data.la || null,
-                data.lb || null,
-                data.s || null,
-                data.k || null,
-                data.f || null,
-                data.lp || null,
-                data.br || null,
-                data.ba || null,
-                data.poignée || null,
-                data.mollet || null,
+                data?.cou || null,
+                data?.epaule || null,
+                data?.poitrine || null,
+                data?.taille || null,
+                data?.ceinture || null,
+                data?.petite_hanche || null,
+                data?.hanche || null,
+                data?.hauteur_taille || null,
+                data?.l_manche_1 || null,
+                data?.l_manche_2 || null,
+                data?.l_haut_1 || null,
+                data?.l_haut_2 || null,
+                data?.l_veste_ou_manteau || null,
+                data?.l_jupe_t_h || null,
+                data?.long_jupe_1 || null,
+                data?.long_jupe_2 || null,
+                data?.l_robe_1 || null,
+                data?.l_robe_2 || null,
+                data?.l_pant || null,
+                data?.tour_de_bras || null,
+                data?.dessus_poitrine || null,
                 EM_data?.mesuresid
             ]
         }
         : {
-            client : [data.nom, data.prenom, data.tel, data.adresse],
+            client : [data?.nom, data?.prenom, data?.tel, data?.email, data?.notes],
             mesures  : [
-                data.c || null,
-                data.e || null,
-                data.m || null,
-                data.la || null,
-                data.lb || null,
-                data.s || null,
-                data.k || null,
-                data.f || null,
-                data.lp || null,
-                data.br || null,
-                data.ba || null,
-                data.poignée || null,
-                data.mollet || null
+                data?.cou || null,
+                data?.epaule || null,
+                data?.poitrine || null,
+                data?.taille || null,
+                data?.ceinture || null,
+                data?.petite_hanche || null,
+                data?.hanche || null,
+                data?.hauteur_taille || null,
+                data?.l_manche_1 || null,
+                data?.l_manche_2 || null,
+                data?.l_haut_1 || null,
+                data?.l_haut_2 || null,
+                data?.l_veste_ou_manteau || null,
+                data?.l_jupe_t_h || null,
+                data?.long_jupe_1 || null,
+                data?.long_jupe_2 || null,
+                data?.l_robe_1 || null,
+                data?.l_robe_2 || null,
+                data?.l_pant || null,
+                data?.tour_de_bras || null,
+                data?.dessus_poitrine || null,
             ]
         }
         // console.log(data)
@@ -123,26 +140,35 @@ function ClientPanel({closeModal, editMode, ID, refresh}){
 
                 <form className="modal-content" onSubmit={handleSubmit(handleForm)}>
                     <div className="form-part first-part">
-                        <input {...register('prenom', {required : true})} type="text" className="form-field"  placeholder='prénom' defaultValue={ editMode ? EM_data?.prenom : null } />
-                        <input {...register('nom', {required : true})} type="text" className="form-field"  placeholder='nom' defaultValue={ editMode ? EM_data?.nom : null } />
-                        <input {...register('tel')} type="text" className="form-field"  placeholder='tel' defaultValue={ editMode ? EM_data?.tel : null } />
-                        <input {...register('adresse')} type="text" className="form-field"  placeholder='adresse' defaultValue={ editMode ? EM_data?.adresse : null } />
+                        <input {...register('prenom', {required : true})} type="text" autoFocus className="form-field"  placeholder='prénom' />
+                        <input {...register('nom', {required : true})} type="text" className="form-field"  placeholder='nom' />
+                        <input {...register('tel')} type="text" className="form-field"  placeholder='tel' />
+                        <input {...register('email')} type="text" className="form-field ignore-capitalize-form-field"  placeholder='email'/>
+                        <textarea {...register('notes')} type="text" className="form-field notes"  placeholder='notes'/>
                     </div>
 
                     <div className="form-part second-part">
-                        <input type="text" className="form-field" {...register('c')}  placeholder='c' defaultValue={ editMode ? EM_data?.c : null } />
-                        <input type="text" className="form-field" {...register('e')}  placeholder='e' defaultValue={ editMode ? EM_data?.e : null } />
-                        <input type="text" className="form-field" {...register('m')}  placeholder='m' defaultValue={ editMode ? EM_data?.m : null } />
-                        <input type="text" className="form-field" {...register('la')}  placeholder='la' defaultValue={ editMode ? EM_data?.la : null } />
-                        <input type="text" className="form-field" {...register('lb')}  placeholder='lb' defaultValue={ editMode ? EM_data?.lb : null } />
-                        <input type="text" className="form-field" {...register('s')}  placeholder='s' defaultValue={ editMode ? EM_data?.s : null } />
-                        <input type="text" className="form-field" {...register('k')}  placeholder='k' defaultValue={ editMode ? EM_data?.k : null } />
-                        <input type="text" className="form-field" {...register('f')}  placeholder='f' defaultValue={ editMode ? EM_data?.f : null } />
-                        <input type="text" className="form-field" {...register('lp')}  placeholder='lp' defaultValue={ editMode ? EM_data?.lp : null } />
-                        <input type="text" className="form-field" {...register('br')}  placeholder='br' defaultValue={ editMode ? EM_data?.br : null } />
-                        <input type="text" className="form-field" {...register('ba')}  placeholder='ba' defaultValue={ editMode ? EM_data?.ba : null } />
-                        <input type="text" className="form-field" {...register('poignée')}  placeholder='poignée' defaultValue={ editMode ? EM_data?.poignee : null } />
-                        <input type="text" className="form-field" {...register('mollet')}  placeholder='mollet' defaultValue={ editMode ? EM_data?.mollet : null } />
+                        <input type="text" className="form-field" {...register('cou')}  placeholder='cou' />
+                        <input type="text" className="form-field" {...register('epaule')}  placeholder='epaule' />
+                        <input type="text" className="form-field" {...register('poitrine')}  placeholder='poitrine' />
+                        <input type="text" className="form-field" {...register('taille')}  placeholder='taille' />
+                        <input type="text" className="form-field" {...register('ceinture')}  placeholder='ceinture' />
+                        <input type="text" className="form-field" {...register('petite_hanche')}  placeholder='petite hanche' />
+                        <input type="text" className="form-field" {...register('hanche')}  placeholder='hanche' />
+                        <input type="text" className="form-field" {...register('hauteur_taille')}  placeholder='hauteur taille' />
+                        <input type="text" className="form-field" {...register('l_manche_1')}  placeholder='l manche 1' />
+                        <input type="text" className="form-field" {...register('l_manche_2')}  placeholder='l manche 2' />
+                        <input type="text" className="form-field" {...register('l_haut_1')}  placeholder='l haut 1' />
+                        <input type="text" className="form-field" {...register('l_haut_2')}  placeholder='l haut 2' />
+                        <input type="text" className="form-field" {...register('l_veste_ou_manteau')}  placeholder='l veste ou manteau' />
+                        <input type="text" className="form-field" {...register('l_jupe_t_h')}  placeholder='l jupe t h' />
+                        <input type="text" className="form-field" {...register('long_jupe_1')}  placeholder='long jupe 1' />
+                        <input type="text" className="form-field" {...register('long_jupe_2')}  placeholder='long jupe 2' />
+                        <input type="text" className="form-field" {...register('l_robe_1')}  placeholder='l robe 1' />
+                        <input type="text" className="form-field" {...register('l_robe_2')}  placeholder='l robe 2' />
+                        <input type="text" className="form-field" {...register('l_pant')}  placeholder='l pant' />
+                        <input type="text" className="form-field" {...register('tour_de_bras')}  placeholder='tour de bras' />
+                        <input type="text" className="form-field" {...register('dessus_poitrine')}  placeholder='dessus poitrine' />
                     </div>
 
                         <button type="submit" className="validate-form"> Enregistrer </button>

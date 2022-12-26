@@ -56,7 +56,7 @@ CREATE OR REPLACE FUNCTION checkToResetFacturesCount()
     RETURNS TRIGGER AS
 $$
 BEGIN
-    IF NEW.count > 99 THEN
+    IF NEW.count > 9999 THEN
         UPDATE facturation SET count = 1;
     END IF;
 

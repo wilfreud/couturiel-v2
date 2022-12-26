@@ -1,6 +1,6 @@
 
 .facture-itself.override{
-    font-size: 1.3em;
+    font-size: 1.1em;
 }
 
 .header-facture.facture-part.override{
@@ -11,10 +11,14 @@
 }
 
 .header-facture.facture-part.override #logo{
-    width: 10em;
+    width: 7em;
 }
 
 .body-facture.facture-part.override{
     display: grid;
     justify-content: center;
+}
+
+.mesures.override .mesure-cell .data{
+    color: var(--secondary-color-variant);
 }

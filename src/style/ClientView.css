@@ -38,7 +38,19 @@
     font-style: italic;
 }
 
+.data.notes{
+    font-size: .7em;
+    color: lightgray;
+    letter-spacing: 1.1px;
+}
+
 .mesure-cell .data{
     margin-left: 5px;
     font-weight: bolder;
+}
+
+.separate-client-data{
+        margin: 1.2em 0;
+    border: solid 1px var(--primary-color);
+    background-color: var(--primary-color);
 }
