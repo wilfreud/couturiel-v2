@@ -318,7 +318,7 @@ ipcMain.handle('get-models-by-category', async(event, args) => {
 })
 
 ipcMain.handle('add-commande', async(event, args) => {
-  const SQL = `INSERT INTO commandes(proprietaire, date_livraison, avance, remise, total) VALUES($1, $2, $3, $4, $5) RETURNING id`
+  const SQL = `INSERT INTO commandes(proprietaire, date_livraison, avance, remise, total, livraison, adresse) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id`
   const res1 = await db.query(SQL, args.query1)
   const baseID = res1.rows[0].id
 
@@ -400,7 +400,7 @@ ipcMain.handle('delete-employe', async(event, args) => {
 
 ipcMain.handle('get-factures-infos', async(event, args) => {
   const SQL = `SELECT 
-  commandes.id, commandes.date_livraison, commandes.avance, commandes.remise, commandes.total,
+  commandes.id, commandes.date_livraison, commandes.avance, commandes.remise, commandes.total, commandes.livraison, commandes.adresse,
   commande_to_modele.quantite,
   modeles.nom_modele, 
   infos_modeles.prix
@@ -495,4 +495,11 @@ ipcMain.handle('get-monthly-stats', async(event, args) => {
   const SQL = `SELECT date_part('week', date) AS grouper, SUM(entree) AS entrees, SUM(sortie) AS sorties FROM caisse  ${args ? `WHERE EXTRACT(year FROM date) = ${f_date[0]} AND EXTRACT(month FROM date) = ${f_date[1]}` : ""}  GROUP BY grouper ORDER BY grouper ASC`
   const res = await db.query(SQL)
   return res.rows
+})
+
+ipcMain.handle('get-livraison-infos', async(event, args) => {
+  const SQL = `SELECT livraison, adresse FROM commandes WHERE id = $1`
+  const res  = await db.query(SQL, [args])
+
+  return res.rows[0]
 })

@@ -224,6 +224,11 @@ contextBridge.exposeInMainWorld('api', {
     getMonthlyStats : (args) => {
         const response = ipcRenderer.invoke('get-monthly-stats', args)
         return response
+    },
+
+    getLivraisonInfos : (args) => {
+        const response = ipcRenderer.invoke('get-livraison-infos', args)
+        return response
     }
  
 

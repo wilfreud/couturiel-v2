@@ -116,7 +116,8 @@ function CommandesPanel({ editMode, refresh, ID, closeModal }) {
    
       const SEND = {
         produits : formatContenuCommade(ArrayOfModels),
-        query1 : [data?.proprietaire || null, data?.date_livraison || null, data?.avance || 0, data?.remise || 0, (computeTotalCommande() - data?.remise - data?.avance)]
+        query1 : [data?.proprietaire || null, data?.date_livraison || null, data?.avance || 0, data?.remise || 0, (computeTotalCommande() - Number(data?.remise) - Number(data?.avance) + Number(data?.livraison))
+        , data?.livraison || 0, data?.adresse || null]
       }
       
       mutate(SEND)
@@ -149,7 +150,7 @@ function CommandesPanel({ editMode, refresh, ID, closeModal }) {
 
     function computeTotalCommande(){
       const total = ArrayOfModels.reduce((runningTotal, value) => {
-        return runningTotal + (value?.quantite * value?.prix)
+        return runningTotal + (Number(value?.quantite) * Number(value?.prix))
       }, 0)
 
       return total
@@ -193,7 +194,7 @@ function CommandesPanel({ editMode, refresh, ID, closeModal }) {
                       <option value="default" disabled hidden> Choisir client... </option>
                       {
                         clients?.map((client, index) => (
-                          <option value={client?.id} key={index}> {client?.prenom + client?.nom} </option>
+                          <option value={client?.id} key={index}> {client?.prenom + " " + client?.nom} </option>
                         ))
                       }
                     </select>
@@ -219,7 +220,7 @@ function CommandesPanel({ editMode, refresh, ID, closeModal }) {
                   {/* SELECT MODEL */}
                   <div className="add-product">
                     <select className="input-select" defaultValue="default" value={newModel} onChange={ (e) => setNewModel(Number(e.target.value)|| null)}>
-                      <option value="default" disabled hidden> Choisir modèle </option>
+                      <option value="default" disabled hidden> Modèle (taille, couleur) </option>
                       {
                         modeles?.map((md, index) => (
                           <option value={md?.id} key={index}> {md?.nom_modele} ({md?.taille}, {md?.couleur}) </option>
@@ -250,10 +251,12 @@ function CommandesPanel({ editMode, refresh, ID, closeModal }) {
                     <div className="form-part">
                       Avance : <input className="form-field" type="number" {...register('avance', {min : 0})} defaultValue={0} placeholder="Avance" />
                       Remise : <input className="form-field" type="number" {...register('remise', {min : 0})} defaultValue={0} placeholder="Avance" />
+                      Livraison : <input className="form-field" type="number" {...register('livraison', {min : 0})} defaultValue={0} placeholder="Livraison" />
+                      Adresse : <input className="form-field" type="text" {...register('adresse')} defaultValue={''} placeholder="Adresse" />
                     </div>
                     
                     <div>
-                      Total : <span className="golden"> { computeTotalCommande() } </span>
+                      Total : <span> { computeTotalCommande() } </span>
                     </div>
 
                   </div>

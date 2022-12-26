@@ -56,6 +56,8 @@ CREATE TABLE IF NOT EXISTS commandes (
     total INT NOT NULL DEFAULT 0,
     avance INT NOT NULL DEFAULT 0,
     remise INT NOT NULL DEFAULT 0,
+    adresse VARCHAR(255),
+    livraison INT DEFAULT 0,
     CONSTRAINT fk_proprietaire_commande FOREIGN KEY (proprietaire) REFERENCES "clients"(id) ON DELETE CASCADE
 );
 

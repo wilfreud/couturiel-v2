@@ -138,7 +138,7 @@ function ClientPanel({closeModal, editMode, ID, refresh}){
                 <div className="display-errror">
                 </div>
 
-                <form className="modal-content" onSubmit={handleSubmit(handleForm)}>
+                <form className="modal-content client-panel-container" onSubmit={handleSubmit(handleForm)}>
                     <div className="form-part first-part">
                         <input {...register('prenom', {required : true})} type="text" autoFocus className="form-field"  placeholder='prénom' />
                         <input {...register('nom', {required : true})} type="text" className="form-field"  placeholder='nom' />

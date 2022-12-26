@@ -16,7 +16,7 @@
 }
 
 .facture-part{
-    margin-bottom: 3em;
+    margin-bottom: .5em;
 }
 
 #logo{
@@ -34,9 +34,14 @@
 }
 
 .header-facture{
-    display: flex;
-    place-items: center;
+    padding: 0 2em;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    text-align: left;
+    place-items: baseline;
     gap: 1em;
+    /* background: red; */
+    /* justify-content: */
 }
 
 .client-facture{
@@ -91,7 +96,7 @@
 
 .facture-table-row{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr 2fr 1fr 1fr;
 }
 
 .facture-table-row.facture-table-body .table-cell{
@@ -104,15 +109,19 @@
     color: white;
 }
 
+.facture-table-body .table-cell:first-child{
+    border: none;
+}
+
 .facture-table-body .table-cell{
     font-weight: 200;
     border-left: solid 2px var(--secondary-color);
 }
 
-.facture-table-body .table-cell:last-child{
-    border-right: solid 2px var(--secondary-color);
+/* .facture-table-body .table-cell:last-child{ */
+    /* border-right: solid 2px var(--secondary-color); */
 
-}
+/* } */
 
 .facture-table-row.facture-table-body .table-cell{
     border-bottom: solid 2px var(--secondary-color);
@@ -121,15 +130,31 @@
 .facture-table-header.facture-table-row.ignore-style .table-cell{
     background-color: white;
     color: black;
+    padding: 2px;
+    font-weight: normal;
     border-bottom: solid 2px var(--secondary-color);
 }
 
-.facture-table-header.facture-table-row.ignore-style .table-cell:first-child{
-    border-left: solid 2px var(--secondary-color);
+.facture-table-header.facture-table-row.ignore-style .table-cell.bold-cell{
+    font-weight: bold;
+}
+
+.facture-table-header.facture-table-row.ignore-style .table-cell{
+    /* border-left: solid 2px var(--secondary-color); */
+    border: none;
+    /* border-right: solid 2px black; */
+}
+
+.facture-table-header.facture-table-row.ignore-style .table-cell:nth-child(3){
+    border-right: solid 2px var(--secondary-color);
+    margin: 4px 0;
 }
 
 .facture-table-header.facture-table-row.ignore-style .table-cell:last-child{
-    border-right: solid 2px var(--secondary-color);
+    /* border-right: solid 2px var(--secondary-color); */
+    border-bottom: solid 2px var(--secondary-color);
+    /* border-left: solid 2px var(--secondary-color); */
+    /* margin: 2px; */
 }
 
 .underline{
@@ -141,3 +166,66 @@
     font-weight: 600;
 }
 
+.drop-h1-margin{
+    margin: 0;
+    color: gray;
+}
+
+.dot-it{
+    /* background: red; */
+    border-bottom: dashed 2px var(--secondary-color);
+}
+
+#logo.facture-override-logo{
+    width: 8em;
+}
+
+/* .facture-header-section{ */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-items: center; */
+/* } */
+
+.facture-header-section .client-infos .client-info-inline{
+    font-size: 1.2em;
+}
+
+.facture-part.pay-part{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100%);
+}
+
+.pay-part-title{
+    margin: 0 0 2px 0;
+    /* text-align: center; */
+}
+
+.pay-div{
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.pay-div span:first-child{
+    text-align: right;
+}
+
+.pay-div span:last-child{
+    text-align: left;
+    /* color:red; */
+}
+
+.facture-part.social-contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-item{
+    margin: 0 1em;
+    display: flex;
+}
