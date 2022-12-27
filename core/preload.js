@@ -69,8 +69,18 @@ contextBridge.exposeInMainWorld('api', {
         return response
     },
 
+    getMercerieContent : (args) => {
+        const response = ipcRenderer.invoke('get-mercerie-content', args)
+        return response
+    },
+
     getCaisseTotal : (args) => {
         const response = ipcRenderer.invoke('get-caisse-total', args)
+        return response
+    },
+
+    getMercerieTotal : (args) => {
+        const response = ipcRenderer.invoke('get-mercerie-total', args)
         return response
     },
 

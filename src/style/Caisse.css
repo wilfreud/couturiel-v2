@@ -88,6 +88,12 @@
     /* padding: 0; */
 }
 
+.table-row.table-body .table-cell.mercerie{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    /* padding: 0; */
+}
+
 .add-row{
     display: grid;
     grid-template-columns: repeat(6, 1fr);

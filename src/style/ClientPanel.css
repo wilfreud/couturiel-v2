@@ -47,7 +47,7 @@
     text-transform: capitalize;
     font-style: italic;
     /* transition: 1.5s all linear; */
-    caret-color: var(--primary-color);
+    caret-color: var(--secondary-color);
 }
 
 .validate-form{

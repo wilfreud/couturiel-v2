@@ -250,15 +250,28 @@ ipcMain.handle('get-caisse-content', async(event, args) => {
   return res.rows
 })
 
+ipcMain.handle('get-mercerie-content', async(event, args) => {
+  const SQL = `SELECT caisse.*, TO_CHAR(caisse.date, 'DD-MM-YYYY') as dateFormat FROM caisse WHERE date = ${(args?.date===null || args?.date === '') ? 'CURRENT_DATE' : `'${args?.date}'`} AND extra_data = '${args?.extra_data}' `
+  console.log(SQL)
+  const res = await db.query(SQL)
+  return res.rows
+})
+
 ipcMain.handle('get-caisse-total', async(event, args) => {
   const SQL = `SELECT COALESCE(SUM(entree), 0) - COALESCE(SUM(sortie), 0) AS total FROM caisse WHERE date = ${(args===null || args === '') ? 'CURRENT_DATE' : `'${args}'`} `
   const res = await db.query(SQL)
   return res.rows[0].total
 })
 
+ipcMain.handle('get-mercerie-total', async(event, args) => {
+  const SQL = `SELECT COALESCE(SUM(entree), 0) - COALESCE(SUM(sortie), 0) AS total FROM caisse WHERE date = ${(args?.date===null || args?.date === '') ? 'CURRENT_DATE' : `'${args?.date}'`} AND extra_data = '${args?.extra_data}'`
+  const res = await db.query(SQL)
+  return res.rows[0].total
+})
+
 ipcMain.handle('add-entry-to-caisse', async(event, args) => {
-  const SQL = `INSERT INTO caisse (entree, libelle_entree, sortie, libelle_sortie) VALUES($1, $2, $3, $4)`
-  await db.query(SQL, [args.entree, args.libelle_entree, args.sortie, args.libelle_sortie])
+  const SQL = `INSERT INTO caisse (entree, libelle_entree, sortie, libelle_sortie, extra_data) VALUES($1, $2, $3, $4, $5)`
+  await db.query(SQL, [args.entree, args.libelle_entree, args.sortie, args.libelle_sortie, args?.extra_data || null])
 })
 
 ipcMain.handle('get-models-categories', async(event, args) => {

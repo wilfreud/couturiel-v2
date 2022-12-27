@@ -4,5 +4,6 @@ CREATE TABLE IF NOT EXISTS caisse(
   entree INT,
   libelle_entree TEXT,
   sortie INT,
-  libelle_sortie TEXT
+  libelle_sortie TEXT,
+  extra_data VARCHAR(255)
 );
