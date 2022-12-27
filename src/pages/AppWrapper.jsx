@@ -13,6 +13,7 @@ import Produits from '../components/Produits'
 import Salaires from '../components/Salaires'
 import AutreCommande from '../components/AutreCommande'
 import Stats from '../components/Stats'
+import Mercerie from '../components/Mercerie'
 import '../style/AppWrapper.css'
 
 
@@ -36,6 +37,7 @@ function AppWrapper(){
                     <Route path="comptabilite/comptagene" element={<ComptaGenerale />} />
                     <Route path="comptabilite/salaires" element={<Salaires />} />
                     <Route path="comptabilite/autreCommande" element={<AutreCommande />} />
+                    <Route path="comptabilite/mercerie" element={<Mercerie />} />
                     <Route path="comptabilite/graphe" element={<Stats />} />
                 </Routes>
                 <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />

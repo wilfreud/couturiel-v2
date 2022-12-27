@@ -220,7 +220,8 @@ ipcMain.handle('update-client', async(event, args) => {
 
 const CATEGORIES = {
   tenues : 1,
-  accessoires : 2
+  accessoires : 2,
+  autres : 0
 }
 
 ipcMain.handle('get-all-tenues', async(event, args) => {
@@ -232,6 +233,12 @@ ipcMain.handle('get-all-tenues', async(event, args) => {
 
 ipcMain.handle('get-all-accessoires', async(event, args) => {
   const SQL = `SELECT modeles.*, infos_modeles.taille, infos_modeles.quantite, infos_modeles.couleur, infos_modeles.modele, infos_modeles.prix FROM modeles INNER JOIN infos_modeles ON infos_modeles.modele = modeles.id WHERE categorie = ${CATEGORIES.accessoires} ORDER BY nom_modele`
+  const res = await db.query(SQL)
+  return res.rows
+})
+
+ipcMain.handle('get-all-other-models', async(event, args) => {
+  const SQL = `SELECT modeles.*, infos_modeles.taille, infos_modeles.quantite, infos_modeles.couleur, infos_modeles.modele, infos_modeles.prix FROM modeles INNER JOIN infos_modeles ON infos_modeles.modele = modeles.id WHERE categorie = ${CATEGORIES.autres} ORDER BY nom_modele`
   const res = await db.query(SQL)
   return res.rows
 })

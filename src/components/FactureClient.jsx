@@ -93,7 +93,9 @@ function FactureClient({ closeModal, ID }) {
             </div>
 
             <div className='facture-header-section'>
-              <img src={logo} alt="Magci logo" id="logo" className='facture-override-logo'/>
+              <div className="facture-logo-container">
+                <img src={logo} alt="Magci logo" id="logo" className='facture-override-logo'/>
+              </div>
               
 
               <div className="client-infos">

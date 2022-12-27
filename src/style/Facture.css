@@ -229,3 +229,8 @@
     margin: 0 1em;
     display: flex;
 }
+
+.facture-logo-container{
+    display: flex;
+    justify-content: center;
+}

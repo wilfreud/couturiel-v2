@@ -56,20 +56,24 @@ function CommandesPanel({ editMode, refresh, ID, closeModal }) {
       refetchOnWindowFocus : false
     })
 
-    const  { data : modeles, refetch : refetchModels } = useQuery('fetch-models-by-category', window.api.getModelsByCategory, {
-      cacheTime : false,
-      refetchOnWindowFocus : false
-    })
+    // const  { data : modeles, refetch : refetchModels } = useQuery('fetch-models-by-category', window.api.getModelsByCategory, {
+    //   cacheTime : false,
+    //   refetchOnWindowFocus : false
+    // })
 
     const { mutate, isError : isMutationError, error : mutationError} = useMutation(window.api.addCommande, {
       onSuccess : refresh
     })
 
-    const { data : tenues } = useQuery('get-tenues', window.api.getAllTenues)
-    const { data : accessoires } = useQuery('get-accessoires', window.api.getAllAccessoires)
+    const { data : Tenues, refetch : refetchTenues } = useQuery('get-tenues', window.api.getAllTenues)
+    const { data : Accessoires, refetch : refetchAccessoires } = useQuery('get-accessoires', window.api.getAllAccessoires)
+    const { data : Customs, refetch : refetchCustoms } = useQuery('get-customs', window.api.getAllOtherModels)
 
 
-    const  { mutate : addNewModel } = useMutation(window.api.addModel, { onSuccess : refetchModels, onError : () => console.error("Failed to add sub-model") })
+    const  { mutate : addNewModel } = useMutation(window.api.addModel, { 
+      onSuccess : refetchCustoms, 
+      onError : () => console.error("Failed to add sub-model") }
+    )
 
     const [ArrayOfModels, setArrayOfModels] = useState([])
     const [ modelQuantite, setModelQuantite ] = useState(1)
@@ -219,11 +223,34 @@ function CommandesPanel({ editMode, refresh, ID, closeModal }) {
                   <div className="add-product">
                     <select className="input-select" defaultValue="default" value={newModel} onChange={ (e) => setNewModel(Number(e.target.value)|| null)}>
                       <option value="default" disabled hidden> Modèle (taille, couleur) </option>
-                      {
+                      {/* {
                         modeles?.map((md, index) => (
                           <option value={md?.id} key={index}> {md?.nom_modele} ({md?.taille}, {md?.couleur}) </option>
                         ))
-                      }
+                      } */}
+                      <optgroup label='Tenues'>
+                        {
+                          Tenues?.map((T, index) => (
+                            <option value={T?.id} key={index}> {T?.nom_modele} ({T?.taille}, {T?.couleur}) </option>
+                          ))
+                        }
+                      </optgroup>
+
+                      <optgroup label='Accessoires'>
+                        {
+                          Accessoires?.map((A, index) => (
+                            <option value={A?.id} key={index}> {A?.nom_modele} ({A?.taille}, {A?.couleur}) </option>
+                          ))
+                        }
+                      </optgroup>
+
+                      <optgroup label='Customs'>
+                        {
+                          Customs?.map((C, index) => (
+                            <option value={C?.id} key={index}> {C?.nom_modele} ({C?.taille}, {C?.couleur}) </option>
+                          ))
+                        }
+                      </optgroup>
                     </select> 
                     <input type="number" placeholder="Quantite" className="form-field" min={1} value={modelQuantite} onChange={(e) => setModelQuantite(Number(e.target.value) || 1)}/>
                     <div className="add-new-cmd" title='Ajouter' onClick={ handleMiniForm }> {SVGS.plusCircle} </div>

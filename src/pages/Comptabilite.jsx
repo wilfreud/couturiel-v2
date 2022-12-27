@@ -10,7 +10,8 @@ function Comptabilite(){
         cg : 'comptagene',
         salaires : 'salaires',
         autre_commande : 'autreCommande',
-        graphe : 'graphe'
+        graphe : 'graphe',
+        mercerie : 'mercerie'
     }
 
 
@@ -20,6 +21,10 @@ function Comptabilite(){
             <div className="compta-options">
                 <div className="option-ocur" onClick={() =>{ navigate(NAV_OPTIONS.caisse)} }>
                     <p>Caisse</p>
+                </div>
+
+                <div className="option-ocur" onClick={() =>{ navigate(NAV_OPTIONS.mercerie)} }>
+                    <p>Mercerie</p>
                 </div>
 
                 <div className="option-ocur" onClick={() =>{ navigate(NAV_OPTIONS.cg)} }>

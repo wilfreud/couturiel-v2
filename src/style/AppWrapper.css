@@ -2,6 +2,10 @@
     display: grid;
     grid-template-columns: 1fr 20fr;
     height: 100vh;
+    background-image: url(../assets/logo-alt.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 10em;
 }
 
 .App-main-container{

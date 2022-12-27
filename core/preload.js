@@ -59,6 +59,10 @@ contextBridge.exposeInMainWorld('api', {
         return response
     },
 
+    getAllOtherModels : (args) => {
+        const response = ipcRenderer.invoke('get-all-other-models', args)
+        return response
+    },
 
     getCaisseContent : (args) => {
         const response = ipcRenderer.invoke('get-caisse-content', args)
