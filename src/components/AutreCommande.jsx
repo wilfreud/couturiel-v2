@@ -70,9 +70,10 @@ function AutreCommande() {
     }
 
     function computeTotal(){
+        // console.log(produits)
         const total = produits?.reduce((previousValue, currentValue) => {
             const newValue = JSON.parse(currentValue?.modele)
-            return previousValue + (newValue?.prix * Number(currentValue?.quantite))
+            return previousValue + (Number(newValue?.prix) * Number(currentValue?.quantite))
         }, 0) || 0
 
         // console.log(total)

@@ -4,9 +4,12 @@ import  { useRef } from 'react'
 import { useQuery } from 'react-query'
 import '../style/Facture.css'
 import logo from '../assets/logo-alt.png'
+import FB from '../assets/svg/facebook.svg'
+import IG from '../assets/svg/insta.svg'
+import WB from '../assets/svg/whatsapp.svg'
 
 function FactureClient({ closeModal, data }) {
-// console.log(data)
+console.log(data)
 
   const { data : facturationInfos } = useQuery('get-facturation-infos', window.api.getFacturesCount, { refetchOnWindowFocus : false })
 
@@ -19,11 +22,11 @@ function FactureClient({ closeModal, data }) {
 
   function FACT_PREFIX(){
     // console.log(facturationInfos)
-    const formatID = String(facturationInfos?.count).padStart(3, 0)
-    const month = new Date().getMonth() + 1
-    const formatedMonth = String(month).padStart(2, 0)
+    const formatID = String(facturationInfos?.count).padStart(4, 0)
+    // const month = new Date().getMonth() + 1
+    // const formatedMonth = String(month).padStart(2, 0)
     
-    return `RJCA-${formatedMonth}-${formatID}`
+    return `M-${formatID}`
   }
 
 // console.log((data?.modeles))
@@ -76,82 +79,154 @@ function FactureClient({ closeModal, data }) {
         <div className="facture-itself" ref={componentRef} >
 
           <div className="header-facture facture-part">
-            <img src={logo} alt="Tailor logo" id="logo" />
+            
+            <div className='facture-header-section'>
+              <h1 className='drop-h1-margin'>CLIENT</h1>
 
-            <div className="header-desc">
-              <h3> {INFOS.adresse} </h3>
-              <p> {INFOS.telephone} </p>
-            </div>
-          </div>
+              <div className="client-infos">
+                <div className="client-info-inline">
+                  <span>Nom : </span>
+                  <span className='dot-it'>{data?.proprietaire}</span>
+                </div>  
 
-          <div className="client-facture facture-part">
+                <div className="client-info-inline">
+                  <span>Adresse : </span>
+                  <span className='dot-it'>  </span>
+                </div>
 
-            <div className="client-info">
-              <span className="boldit">Facture N° {FACT_PREFIX()}</span>
-              <span className="actual-info">  </span>
-            </div>
+                <div className="client-info-inline">
+                  <span>Telephone : </span>
+                  <span className='dot-it'> {data?.telephone} </span>
+                </div>
 
-            <div className="client-info">
-              <span className="underline">Date</span>
-              <span className="actual-info"> : {TODAY.getDate()} / {TODAY.getMonth()+1} / {TODAY.getFullYear()} </span>
-            </div>
-
-            <div className="client-info">
-              <span className="underline">Client</span>
-              <span className="actual-info"> : {data?.proprietaire} </span>
+              </div>
             </div>
 
-            <div className="client-info">
-              <span className="underline">Téléphone</span>
-              <span className="actual-info"> : {data?.telephone} </span>
-            </div>
-{/* 
-            <div className="client-info">
-              <span className="underline">Adresse</span>
-              <span className="actual-info"> :  </span>
-            </div> */}
+            <div className='facture-header-section'>
+              <div className="facture-logo-container">
+                <img src={logo} alt="Magci logo" id="logo" className='facture-override-logo'/>
+              </div>
+              
 
+              <div className="client-infos">
+              <h1 className='drop-h1-margin'>FACTURE</h1>
+
+                <div className="client-info-inline">
+                  <span>N° : </span>
+                  <span> {FACT_PREFIX()} </span> 
+                </div>
+
+                <div className="client-info-inline">
+                  <span>Date : </span>
+                  <span className='dot-it'> {TODAY.getDate()}/{TODAY.getMonth() + 1}/{TODAY.getFullYear()} </span>
+                </div>
+              </div>
+            </div>
 
           </div>
 
           <div className="content-facture facture-part">
 
             <div className="facture-table-header facture-table-row">
-              <div className="table-cell">DESIGNATION</div>
-              <div className="table-cell">QUANTITE</div>
-              <div className="table-cell">PRIX UNITAIRE</div>
-              <div className="table-cell">PRIX TOTAL</div>
+              <div className="table-cell">QTE</div>
+              <div className="table-cell">DESCRIPTION</div>
+              <div className="table-cell">PRIX</div>
+              <div className="table-cell">TOTAL</div>
             </div>
 
             {
               data?.modeles?.map((element, index) => {
-                  const RNF = JSON.parse(element?.modele)
-                return (<div className="facture-table-row facture-table-body" key={index}>
-                  <div className="table-cell"> {RNF?.nom_modele} </div>
+                const RESU = JSON.parse(element.modele)
+                // console.log([RESU.prix, RESU.quantite])
+                return (
+                <div className="facture-table-row facture-table-body" key={index}>
                   <div className="table-cell"> {element?.quantite} </div>
-                  <div className="table-cell"> {RNF?.prix} </div>
-                  <div className="table-cell"> {RNF?.prix * element?.quantite} </div>
-                </div>)
+                  <div className="table-cell"> {RESU?.nom_modele} </div>
+                  <div className="table-cell"> {RESU?.prix} </div>
+                  <div className="table-cell"> {element?.quantite * RESU?.prix} </div>
+                </div>
+                )
               })
             }
 
             <div className="facture-table-header facture-table-row ignore-style">
+              <div className="table-cell"></div>
+              <div className="table-cell"></div>
               <div className="table-cell">Remise</div>
-              <div className="table-cell"></div>
-              <div className="table-cell"></div>
-              <div className="table-cell"> {data?.remise || 0 }  FCFA </div>
+              <div className="table-cell"> { data?.remise || 0 } FCFA </div>
             </div>
 
             <div className="facture-table-header facture-table-row ignore-style">
-              <div className="table-cell">TOTAL</div>
               <div className="table-cell"></div>
               <div className="table-cell"></div>
-              <div className="table-cell"> {data?.total} FCFA </div>
+              <div className="table-cell">Sous Total</div>
+              <div className="table-cell"> {(Number(data?.total) + Number(data?.avance)) || 0 } FCFA </div>
+            </div>
+
+            <div className="facture-table-header facture-table-row ignore-style">
+              <div className="table-cell"></div>
+              <div className="table-cell"></div>
+              <div className="table-cell">Livraison</div>
+              <div className="table-cell"> { data?.livraison || 0 } FCFA </div>
+            </div>
+
+            <div className="facture-table-header facture-table-row ignore-style">
+              <div className="table-cell"></div>
+              <div className="table-cell"></div>
+              <div className="table-cell bold-cell">Accompte</div>
+              <div className="table-cell bold-cell"> { data?.avance || 0 } FCFA </div>
+            </div>
+
+            <div className="facture-table-header facture-table-row ignore-style">
+              <div className="table-cell"></div>
+              <div className="table-cell"></div>
+              <div className="table-cell bold-cell">A PAYER</div>
+              <div className="table-cell bold-cell"> { data?.total || 0 } FCFA </div>
             </div>
 
           </div>
 
-          <div className="footer-facture facture-part">
+          <div className="facture-part pay-part">
+            <h3 className="pay-part-title">MODES DE PAIEMENT</h3>
+            <div className="pay-div">
+              <span>Orange Money </span>
+              <span>77 556 04 21</span>
+            </div>
+
+            <div className="pay-div">
+              <span>Wave </span>
+              <span>77 556 04 21</span>
+            </div>
+
+            <div className="pay-div">
+              <span>Espèces</span>
+              <span></span>
+            </div>
+
+            <div className="pay-div">
+              <span>Chèque</span>
+              <span></span>
+            </div>
+          </div>
+
+          <div className="facture-part social-contact">
+            <div className="social-item">
+              <img src={WB} alt="whatsapp" />
+              <p>+221 77 556 04 21</p>
+            </div>
+
+            <div className="social-item">
+              <img src={IG} alt="instagram" />
+              <p>@maxidkr</p>
+            </div>
+
+            <div className="social-item">
+              <img src={FB} alt="facebook" />
+              <p>@maaagci</p>
+            </div>
+          </div>
+
+          {/* <div className="footer-facture facture-part">
             
             <div className="text-container toute-lettres">
               <p>La présente facture s'arrête à la somme de</p>
@@ -161,7 +236,7 @@ function FactureClient({ closeModal, data }) {
               <p className="underline"> Le Directeur </p>
             </div>
 
-          </div>
+          </div> */}
         </div>
     </div>
   , document.getElementById('modal-portal'))

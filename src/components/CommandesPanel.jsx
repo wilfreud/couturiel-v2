@@ -56,10 +56,10 @@ function CommandesPanel({ editMode, refresh, ID, closeModal }) {
       refetchOnWindowFocus : false
     })
 
-    // const  { data : modeles, refetch : refetchModels } = useQuery('fetch-models-by-category', window.api.getModelsByCategory, {
-    //   cacheTime : false,
-    //   refetchOnWindowFocus : false
-    // })
+    const  { data : modeles, refetch : refetchModels } = useQuery('fetch-models-by-category', window.api.getModelsByCategory, {
+      cacheTime : false,
+      refetchOnWindowFocus : false
+    })
 
     const { mutate, isError : isMutationError, error : mutationError} = useMutation(window.api.addCommande, {
       onSuccess : refresh
