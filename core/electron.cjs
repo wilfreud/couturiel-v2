@@ -218,20 +218,20 @@ ipcMain.handle('update-client', async(event, args) => {
   await db.query(SQL2, args.mesures)
 })
 
-ipcMain.handle('get-all-getzner', async(event, args) => {
-  const SQL = `SELECT modeles.*, infos_modeles.taille, infos_modeles.quantite, infos_modeles.couleur, infos_modeles.modele, infos_modeles.prix FROM modeles INNER JOIN infos_modeles ON infos_modeles.modele = modeles.id WHERE categorie = 1 ORDER BY nom_modele`
+const CATEGORIES = {
+  tenues : 1,
+  accessoires : 2
+}
+
+ipcMain.handle('get-all-tenues', async(event, args) => {
+  const SQL = `SELECT modeles.*, infos_modeles.taille, infos_modeles.quantite, infos_modeles.couleur, infos_modeles.modele, infos_modeles.prix FROM modeles INNER JOIN infos_modeles ON infos_modeles.modele = modeles.id WHERE categorie = ${CATEGORIES.tenues} ORDER BY nom_modele`
   const res = await db.query(SQL)
   return res.rows
 })
 
-ipcMain.handle('get-all-supercent', async(event, args) => {
-  const SQL = `SELECT modeles.*, infos_modeles.taille, infos_modeles.quantite, infos_modeles.couleur, infos_modeles.modele, infos_modeles.prix FROM modeles INNER JOIN infos_modeles ON infos_modeles.modele = modeles.id WHERE categorie = 2 ORDER BY nom_modele`
-  const res = await db.query(SQL)
-  return res.rows
-})
 
 ipcMain.handle('get-all-accessoires', async(event, args) => {
-  const SQL = `SELECT modeles.*, infos_modeles.taille, infos_modeles.quantite, infos_modeles.couleur, infos_modeles.modele, infos_modeles.prix FROM modeles INNER JOIN infos_modeles ON infos_modeles.modele = modeles.id WHERE categorie = 3 ORDER BY nom_modele`
+  const SQL = `SELECT modeles.*, infos_modeles.taille, infos_modeles.quantite, infos_modeles.couleur, infos_modeles.modele, infos_modeles.prix FROM modeles INNER JOIN infos_modeles ON infos_modeles.modele = modeles.id WHERE categorie = ${CATEGORIES.accessoires} ORDER BY nom_modele`
   const res = await db.query(SQL)
   return res.rows
 })

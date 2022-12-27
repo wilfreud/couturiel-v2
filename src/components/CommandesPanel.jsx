@@ -65,11 +65,9 @@ function CommandesPanel({ editMode, refresh, ID, closeModal }) {
       onSuccess : refresh
     })
 
-    const { data : editCommandeInfos } = useQuery('get-one-commande', () => window.api.getOneCommande(ID), {
-      refetchOnWindowFocus : false,
-      enabled : editMode,
-      cacheTime : false
-    })
+    const { data : tenues } = useQuery('get-tenues', window.api.getAllTenues)
+    const { data : accessoires } = useQuery('get-accessoires', window.api.getAllAccessoires)
+
 
     const  { mutate : addNewModel } = useMutation(window.api.addModel, { onSuccess : refetchModels, onError : () => console.error("Failed to add sub-model") })
 

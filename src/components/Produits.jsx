@@ -9,6 +9,7 @@ import '../style/Produits.css'
 function Produits(){
     const navigate = useNavigate()
     const { categorie } = useParams()
+    console.log(categorie)
 
     function conditionalModalrender(state, action){
 
@@ -35,8 +36,7 @@ function Produits(){
     }
 
     const fetchAPIS = {
-        getzner : window.api.getAllGetzner,
-        supercent : window.api.getAllSupercent,
+        tenues : window.api.getAllTenues,
         accessoires : window.api.getAllAccessoires
     }
 

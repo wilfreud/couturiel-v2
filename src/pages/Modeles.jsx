@@ -6,20 +6,15 @@ function Modeles(){
     const navigate = useNavigate()
 
     const paths = {
-        getzner : 'getzner',
-        supercent : 'supercent',
+        tenues : 'tenues',
         accessoires : 'accessoires'
     }
 
     return(
         <div className="App-main-container">
             <div className="component-body cards-container">
-                <div className="category-card" onClick={ () => navigate(paths.getzner)}>
-                    <p className="category-card-title"> Getzner </p>
-                </div>
-
-                <div className="category-card" onClick={ () => navigate(paths.supercent)}>
-                    <p className="category-card-title"> Supercent </p>
+                <div className="category-card" onClick={ () => navigate(paths.tenues)}>
+                    <p className="category-card-title"> Tenues </p>
                 </div>
 
                 <div className="category-card" onClick={ () => navigate(paths.accessoires)}>

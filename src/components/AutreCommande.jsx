@@ -13,8 +13,7 @@ function AutreCommande() {
     const [ showFacture, setShowFacture ] = useState(false)
     const [ produits, setProduits ] = useState([])
 
-    const { data : getzner } = useQuery('get-getzner', window.api.getAllGetzner)
-    const { data : supercent } = useQuery('get-supercent', window.api.getAllSupercent)
+    const { data : tenues } = useQuery('get-tenues', window.api.getAllTenues)
     const { data : accessoires } = useQuery('get-accessoires', window.api.getAllAccessoires)
 
     function goBack(){
@@ -114,17 +113,9 @@ function AutreCommande() {
             <div className="form-part">
                 <select {...register('modele')} defaultValue="" className="input-select">
                     <option value="" disabled>Choisir modèle</option>
-                    <optgroup label="Getzner">
+                    <optgroup label="Tenues">
                     {
-                        getzner?.map((mod, index) => (
-                          <option value={JSON.stringify(mod)} key={index}> {mod?.nom_modele} ({mod?.taille}, {mod?.couleur}) </option>
-                        ))
-                      }
-                    </optgroup>
-
-                    <optgroup label="Supercent">
-                    {
-                        supercent?.map((mod, index) => (
+                        tenues?.map((mod, index) => (
                           <option value={JSON.stringify(mod)} key={index}> {mod?.nom_modele} ({mod?.taille}, {mod?.couleur}) </option>
                         ))
                       }

@@ -8,9 +8,8 @@ import '../style/AddModel.css'
 function AddModel({ closeModal, categorie, refresh, ID, editMode }){
     
     const CATEGORIES = {
-        getzner : 1,
-        supercent : 2,
-        accessoires : 3
+        tenues : 1,
+        accessoires : 2
     }
     const { register, handleSubmit } = useForm()
     const { mutate : mutateModel, isError : errorMutatingModel, error : modelMultateERROR } = useMutation( editMode ? window.api.updateModel : window.api.addModel, { onSuccess : refresh } )

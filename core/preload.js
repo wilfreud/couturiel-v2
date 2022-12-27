@@ -49,13 +49,8 @@ contextBridge.exposeInMainWorld('api', {
         return response
     },
 
-    getAllGetzner : (args) => {
-        const response = ipcRenderer.invoke('get-all-getzner', args) 
-        return response
-    },
-
-    getAllSupercent : (args) => {
-        const response = ipcRenderer.invoke('get-all-supercent', args)
+    getAllTenues : (args) => {
+        const response = ipcRenderer.invoke('get-all-tenues', args) 
         return response
     },
 
