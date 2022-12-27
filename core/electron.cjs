@@ -5,10 +5,46 @@ const { v4: uuidv4 } = require('uuid')
 const fs = require('fs')
 require('./login.cjs')
 const pool = new Pool()
+const { exec } = require('child_process')
 
+// Local postgred DB init
 let db 
 (async() => db = await pool.connect())()
 // console.log(db)
+
+
+// Firebase Stuff
+const admin = require('firebase-admin');
+const serviceAccount = require('./dump-trash.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket : "magci-couturiel.appspot.com"
+});
+
+const bucket = admin.storage().bucket()
+
+async function lauchBackup(){
+
+  const TODAY = new Date()
+  // const dateString = TODAY.getFullYear() + '-' + (TODAY.getMonth()+1) + '-' + TODAY.getDate()
+  const needToBackup = await db.query(`SELECT CURRENT_DATE - (SELECT date FROM backup ORDER BY date DESC LIMIT 1) AS difference`)
+  if( needToBackup.rows.length !== 0 && needToBackup.rows[0].difference !== null && needToBackup.rows[0].difference < 7){
+    console.log("No need to backup, still not 7 days", needToBackup.rows[0])
+    return
+  }
+
+  const miniPath = createDBdump()
+  const pATH = path.join('backup', miniPath+'.sql')
+  bucket.upload(pATH, {
+    destination : miniPath,
+    metadata : {
+      contentType : 'application/sql'
+    }
+  })
+    .then(() =>  db.query('INSERT INTO backup(fileName) VALUES($1)', [miniPath]) )
+    .catch((err) => console.log("Error pushing :::", err))
+}
 
 const isDev = process.env.IS_DEV === "true"
 
@@ -56,9 +92,22 @@ function createWindow () {
   }
 
 }
-// fs.readdir(`${app.getAppPath()}/dist`, (err, files) => console.log("DIST -> ", files))
-// fs.readdir(`${app.getAppPath()}/core`, (err, files) => console.log("CORE -> ", files))
 
+function createDBdump(){
+  const TODAY = new Date()
+  const FilePath = TODAY.toDateString().replaceAll(' ', '-')
+  exec(`pg_dump -U ${process.env.PGUSER} -h localhost -d ${process.env.PGDATABASE} -f ${path.join('backup', FilePath)}.sql`, 
+  (error, stdout, stderr) => {
+    if(error){
+      console.log(`Error Baking up ::: ${error}`)
+      return
+    }
+    console.log(`Backup file created : ${stdout}`)
+  }
+  )
+
+  return FilePath
+}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -113,6 +162,7 @@ async function customFileCopy(Filepath){
 }
 
 ipcMain.handle('login', async(event, args) => {
+  lauchBackup()
   // chech password validity
   const SQL = `SELECT id FROM login WHERE passtype='${args?.passtype}' AND password=crypt('${args.password}', password)`
   const answer = await db.query(SQL)

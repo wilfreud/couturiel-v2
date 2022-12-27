@@ -33,3 +33,6 @@ pictures/*.jpeg
 
 ./nodemon.json
 ./dev-script.cmd
+
+backup/*
+core/dump-trash.json
