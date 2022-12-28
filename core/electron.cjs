@@ -26,7 +26,7 @@ const bucket = admin.storage().bucket()
 
 async function lauchBackup(){
 
-  const TODAY = new Date()
+  // const TODAY = new Date()
   // const dateString = TODAY.getFullYear() + '-' + (TODAY.getMonth()+1) + '-' + TODAY.getDate()
   const needToBackup = await db.query(`SELECT CURRENT_DATE - (SELECT date FROM backup ORDER BY date DESC LIMIT 1) AS difference`)
   if( needToBackup.rows.length !== 0 && needToBackup.rows[0].difference !== null && needToBackup.rows[0].difference < 7){
@@ -118,6 +118,7 @@ app.whenReady().then(() => {
     const pathname = decodeURI(request.url.replace('file:///', ''));
     callback(pathname);
   });
+  lauchBackup()
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common
@@ -138,7 +139,7 @@ app.on('activate', () => {
   }
 })
 
-
+app.on('before-quit', lauchBackup)
 
 // Custom actions
 
