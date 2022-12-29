@@ -7,11 +7,12 @@ function Modeles(){
 
     const paths = {
         tenues : 'tenues',
-        accessoires : 'accessoires'
+        accessoires : 'accessoires',
+        matieres_premieres : 'matieres_premieres'
     }
 
     return(
-        <div className="App-main-container">
+        <div className="App-main-container carousel">
             <div className="component-body cards-container">
                 <div className="category-card" onClick={ () => navigate(paths.tenues)}>
                     <p className="category-card-title"> Tenues </p>
@@ -19,6 +20,10 @@ function Modeles(){
 
                 <div className="category-card" onClick={ () => navigate(paths.accessoires)}>
                     <p className="category-card-title"> Accessoires </p>
+                </div>
+
+                <div className="category-card" onClick={ () => navigate(paths.matieres_premieres)}>
+                    <p className="category-card-title"> Matières Premières </p>
                 </div>
 
 

@@ -224,7 +224,7 @@ function Salaires(){
                         <div className="table-cell ignore-style"></div>
                         <div className="table-cell ignore-style"></div>
                         <div className="table-cell ignore-style blacken">
-                            <h2>TOTAL : <span className="golden"> { computeTotalSalaires() } </span> </h2>
+                            <h2>TOTAL : <span className=""> { computeTotalSalaires() } </span> </h2>
                             <button className="classic-btn"  onClick={ () => {
                             if(!allowPayment){
                                 toast.error("Paiement dejà effectué !", defaultToast)

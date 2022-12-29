@@ -61,6 +61,9 @@ function Comptabilite() {
     }
 
     function addNewEntry(data){
+
+        // console.log(data)
+        // return
         if(!data.libelle_entree){
             data.libelle_entree = null
         }
@@ -195,7 +198,13 @@ function Comptabilite() {
                     </div>
 
                     <div className="table-cell">
-                        <input className="form-field" type="text" defaultValue={""} {...register('libelle_sortie')} placeholder="Libellé sortie" />
+                        <select className='input-select' {...register('libelle_sortie')}>
+                            <option value="Matière première">Matière première</option>
+                            <option value="Mercerie">Mercerie</option>
+                            <option value="Entretien">Entretien</option>
+                            <option value="Charge fixe">Charge fixe</option>
+                        </select>
+                        {/* <input className="form-field" type="text" defaultValue={""} {...register('libelle_sortie')} placeholder="Libellé sortie" /> */}
                         <input className="form-field" type="number" {...register('sortie', {min : 0}) } placeholder="Sortie" />
                     </div>
                 </form>

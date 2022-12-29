@@ -2,13 +2,15 @@
     padding: 8em;
     DISPLAY: GRID;
     place-content: center;
-    width: 60%;
+    /* width: 60%; */
     gap: 2em;
 }
+
 
 hr{
     width: 100%; 
 }
+
 
 .override-autre-cmd-input .form-field{
     color: var(--secondary-color);

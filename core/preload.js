@@ -59,6 +59,11 @@ contextBridge.exposeInMainWorld('api', {
         return response
     },
 
+    getAllMatieresPremieres : (args) => {
+        const response = ipcRenderer.invoke('get-all-matieres-premieres')
+        return response
+    },
+
     getAllOtherModels : (args) => {
         const response = ipcRenderer.invoke('get-all-other-models', args)
         return response

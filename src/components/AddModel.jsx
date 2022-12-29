@@ -1,17 +1,19 @@
 import ReactDom from 'react-dom'
+import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { useForm } from 'react-hook-form'
 import { useMutation, useQuery } from 'react-query'
 import '../style/AddModel.css'
 
 
-function AddModel({ closeModal, categorie, refresh, ID, editMode }){
+function AddModel({ closeModal, categorie, refresh, ID, editMode, isMatierePremiere }){
     
     const CATEGORIES = {
         tenues : 1,
-        accessoires : 2
+        accessoires : 2,
+        matieres_premieres : 3
     }
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, reset } = useForm()
     const { mutate : mutateModel, isError : errorMutatingModel, error : modelMultateERROR } = useMutation( editMode ? window.api.updateModel : window.api.addModel, { onSuccess : refresh } )
 
     const { data : thisModelData, isLoading : thisModelIsLoading, isError : thisModelIsError, error : thisModelError } = useQuery('get-model-to-update',
@@ -25,6 +27,12 @@ function AddModel({ closeModal, categorie, refresh, ID, editMode }){
         )
 
 
+    useEffect(() => {
+        if(editMode){
+            reset(thisModelData)
+        }
+    }, [thisModelData])
+
     const defaultToast = {
         theme : 'dark',
         pauseOnFocusLoss : false, 
@@ -35,10 +43,10 @@ function AddModel({ closeModal, categorie, refresh, ID, editMode }){
     function handleForm(data){
         
         const infos = {
-            path : data?.image[0]?.path || null,
+            path : data?.image ? data?.image[0]?.path : null,
             modelID : thisModelData?.id,
             infosID : thisModelData?.infos_id, 
-            query1 : editMode ? [data?.modele] : [data?.modele, CATEGORIES[categorie]],
+            query1 : editMode ? [data?.nom_modele] : [data?.nom_modele, CATEGORIES[categorie]],
             query2 : [data?.taille || null, data?.quantite || 0, data?.couleur || null, data?.prix || null]
         }
         // console.log(thisModelData)
@@ -75,7 +83,7 @@ function AddModel({ closeModal, categorie, refresh, ID, editMode }){
             </div>
 
             <h3 className="golden">
-                Ajouter un modèle
+                {editMode ? 'Modifier' : 'Ajouter'}
                 <br />
                 <span className="capitalize">
                     ({categorie})    
@@ -87,21 +95,25 @@ function AddModel({ closeModal, categorie, refresh, ID, editMode }){
                 :
                 <form onSubmit={handleSubmit(handleForm)} className="modal-content">
 
-                    <div className=" file-upload">
-                        <input type="file" {...register('image', { required : editMode ? false : true })} className="form-field file-input" accept="image/*" />
-                    </div>
+                    {
+                        !isMatierePremiere ?    
+                        <div className=" file-upload">
+                            <input type="file" {...register('image', { required : editMode ? false : true })} className="form-field file-input" accept="image/*" />
+                        </div>
+                        : null
+                    }
 
                     <div className="form-part">
-                        <input className="form-field" type="text" {...register('modele', {required : true})} placeholder="Nom du modèle" defaultValue={editMode ? thisModelData?.nom_modele : null} />
+                        <input className="form-field" type="text" {...register('nom_modele', {required : true})} placeholder="Nom"  />
                         {/* <input disabled {...register('categorie', { required : true })} value={categorie} className="select-input form-field categorie" /> */}
 
-                        <input type="text" className="form-field" {...register('couleur')} placeholder="Couleur" defaultValue={editMode ? thisModelData?.couleur : null} />
+                        <input type="text" className="form-field" {...register('couleur')} placeholder="Couleur"  />
 
-                        <input type='text' {...register('taille', { required : true})} className="form-field" placeholder="Taille" defaultValue={editMode ? thisModelData?.taille : null} />
+                        <input type='text' {...register('taille', { required : true})} className="form-field" placeholder="Taille (m)"  />
                         
 
-                        <input type="number" {...register('quantite', {required : true})} placeholder="Quantité" className="form-field" defaultValue={editMode ? thisModelData?.quantite : null} />
-                        <input type="number" {...register('prix', {required : true, min : 0})} placeholder="Prix" className="form-field" defaultValue={editMode ? thisModelData?.prix : null} />
+                        {!isMatierePremiere ? <input type="number" {...register('quantite', {required : true})} placeholder="Quantité" className="form-field"  /> : null}
+                        {!isMatierePremiere ? <input type="number" {...register('prix', {required : true, min : 0})} placeholder="Prix" className="form-field"  /> : null}
 
 
                     </div>

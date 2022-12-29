@@ -9,7 +9,7 @@ import '../style/Produits.css'
 function Produits(){
     const navigate = useNavigate()
     const { categorie } = useParams()
-    console.log(categorie)
+    // console.log(categorie)
 
     function conditionalModalrender(state, action){
 
@@ -37,7 +37,8 @@ function Produits(){
 
     const fetchAPIS = {
         tenues : window.api.getAllTenues,
-        accessoires : window.api.getAllAccessoires
+        accessoires : window.api.getAllAccessoires,
+        matieres_premieres : window.api.getAllMatieresPremieres
     }
 
     const { data : produits, isLoading, isError, error, refetch } = useQuery(`fetch-${categorie}`, fetchAPIS[categorie], {
@@ -55,6 +56,8 @@ function Produits(){
         autoClose : 4000
     }
 
+
+    const IGNORE_CATEGORIE = 'matieres_premieres'
     // console.log("FORMSTATE ID : ", formState.id)
 
 
@@ -144,6 +147,7 @@ function Produits(){
                     closeModal={ () => dispatchForm( {type : DISPATCHERS.add} )}
                     categorie={categorie}
                     refresh={refetch}
+                    isMatierePremiere={(categorie===IGNORE_CATEGORIE) ? true : false }
                     /> 
                 : null
             }
@@ -156,6 +160,7 @@ function Produits(){
                     refresh={refetch}
                     editMode={true}
                     ID={formState.id}
+                    isMatierePremiere={(categorie===IGNORE_CATEGORIE) ? true : false }
                     />
                 : null
             }
@@ -197,20 +202,23 @@ function Produits(){
                             
                             <div className="produit-overlay"></div>
 
-                            <div className="produit-img-container">
+                            {
+                                (categorie!==IGNORE_CATEGORIE)
+                                ? <div className="produit-img-container">
                                 <img 
                                     src={item?.image} 
                                     alt="Produit" 
                                 />
-                            </div>
+                                </div>
+                                : null
+                            }
 
 
                             <div className="produit-infos">
                                 <div className="produit-info-line produit-nom"> <span className="boldit"> Modèle : </span> {item?.nom_modele} </div>
-                                <div className="produit-info-line produit-taille"> <span className="boldit"> Taille : </span> {item?.taille} </div>
-                                <div className="produit-info-line produit-prix"> <span className="boldit"> Prix : </span> {item?.prix} </div>
-                                <div className="produit-info-line produit-quantite"> <span className="boldit"> Quantité : </span> {item?.quantite} </div>
-                                {/* <div className="produit-info-line produit-quantite"> <span className="golden"> ID : </span> {item?.id} </div> */}
+                                <div className="produit-info-line produit-taille"> <span className="boldit"> Taille : </span> {item?.taille} </div> 
+                                { (categorie !== IGNORE_CATEGORIE) ? <div className="produit-info-line produit-prix"> <span className="boldit"> Prix : </span> {item?.prix} </div> : null }
+                                { (categorie !== IGNORE_CATEGORIE) ? <div className="produit-info-line produit-quantite"> <span className="boldit"> Quantité : </span> {item?.quantite} </div> : null }
 
                             </div>
                         </div>

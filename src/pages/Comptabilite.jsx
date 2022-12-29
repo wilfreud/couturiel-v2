@@ -16,16 +16,16 @@ function Comptabilite(){
 
 
     return (
-        <div className="App-main-container">
+        <div className="App-main-container carousel">
             
             <div className="compta-options">
                 <div className="option-ocur" onClick={() =>{ navigate(NAV_OPTIONS.caisse)} }>
                     <p>Caisse</p>
                 </div>
 
-                <div className="option-ocur" onClick={() =>{ navigate(NAV_OPTIONS.mercerie)} }>
+                {/* <div className="option-ocur" onClick={() =>{ navigate(NAV_OPTIONS.mercerie)} }>
                     <p>Mercerie</p>
-                </div>
+                </div> */}
 
                 <div className="option-ocur" onClick={() =>{ navigate(NAV_OPTIONS.cg)} }>
                     <p>Comptabilite <br /> Generale</p>

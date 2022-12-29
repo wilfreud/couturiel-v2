@@ -107,7 +107,7 @@ function Commandes(){
     }
     
     return(
-        <div className="App-main-container" >
+        <div className="App-main-container carousel" >
             <Searchbar setSearch={setFindString} />
             <div className="component-body">
             

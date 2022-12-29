@@ -9,6 +9,6 @@ INSERT INTO categories_modeles(id, nom_categorie)
 VALUES(0, 'Autres');
 
 INSERT INTO categories_modeles(nom_categorie)
-VALUES ('Tenues'), ('Accessoire');
+VALUES ('Tenues'), ('Accessoire'), ('matieres_premieres');
 
 INSERT INTO facturation(mois, count) VALUES(1, 0);
