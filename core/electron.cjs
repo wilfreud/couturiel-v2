@@ -28,7 +28,13 @@ async function lauchBackup(){
 
   // const TODAY = new Date()
   // const dateString = TODAY.getFullYear() + '-' + (TODAY.getMonth()+1) + '-' + TODAY.getDate()
-  const needToBackup = await db.query(`SELECT CURRENT_DATE - (SELECT date FROM backup ORDER BY date DESC LIMIT 1) AS difference`)
+  try{
+    const needToBackup = await db.query(`SELECT CURRENT_DATE - (SELECT date FROM backup ORDER BY date DESC LIMIT 1) AS difference`)
+  }
+  catch(errr){
+    console.log("Failed to properly execute the backup funciton ::: ", errr)
+  }
+  
   if( needToBackup.rows.length !== 0 && needToBackup.rows[0].difference !== null && needToBackup.rows[0].difference < 7){
     console.log("No need to backup, still not 7 days", needToBackup.rows[0])
     return

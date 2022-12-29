@@ -3,11 +3,14 @@ import { useMutation } from 'react-query'
 import { useForm } from 'react-hook-form'
 import '../style/Settings.css'
 import {ToastContainer, toast} from 'react-toastify'
+import { Routes, Route, NavLink, useNavigate, useLocation } from 'react-router-dom'
 
 
 function Settings({ closeModal }){
     
-
+    const navigate = useNavigate()
+const location = useLocation()
+console.log(location.pathname)
     const { register : registerLoginForm, handleSubmit : handleSubmitLogin, getValues : getLoginPasswordValue, reset : resetLogin } = useForm()
     const { register : registerLoginOther, handleSubmit : handleSubmitOther, getValues : getLoginOtherdValue, reset : resetOther } = useForm()
     const { register : registerLoginSecondOther, handleSubmit : handleSubmitSecondOther, getValues : getLoginSecondOther, reset : resetSecondOther } = useForm()
@@ -15,7 +18,7 @@ function Settings({ closeModal }){
     const { mutate, isError, error } = useMutation(window.api.changePassword)
 
     const SVGS = {
-        close : <svg onClick={closeModal} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+        close : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
         <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clipRule="evenodd" />
       </svg> 
     }
@@ -118,14 +121,58 @@ function Settings({ closeModal }){
     return ReactDom.createPortal(
         <div className="popup settings">
             <div className="close-modal-contain">
-                <div className="close-modal">
+                <div className="close-modal" onClick={() => {
+                    navigate('home')
+                    closeModal()
+                }}>
                     {SVGS.close}
                 </div>
             </div>
 
 
             <div className="modal-container">
-                <form className="modal-content insettings" onClick={handleSubmitLogin(handleFormLogin)}>
+
+                <div className="settings-nav">
+                    <NavLink to='settings/connexion' className='link-ti'>Connexion</NavLink>
+                    <NavLink to='settings/edit' className='link-ti'>Modifications</NavLink>
+                    <NavLink to='settings/delete' className='link-ti'>Suppression</NavLink>
+                </div>
+
+                <Routes>
+                    <Route path="settings/connexion" element={
+                        <form className="modal-content insettings" onClick={handleSubmitLogin(handleFormLogin)}>
+                        <h2 className="golden "> Connexion </h2>
+                        <input type="password" className="form-field" {...registerLoginForm('oldPassword')} placeholder="Ancien mot de passe" />
+                        <input type="password" className="form-field" {...registerLoginForm('password')} placeholder="Nouveau mot de passe" />
+                        <input type="password" className="form-field" {...registerLoginForm('confirmPassword')} placeholder="Répéter mot de passe" />
+                        <input type="submit" className="validate-form" defaultValue="Sauvegarder" />
+                    </form>
+                    } />
+
+
+                    <Route path="settings/edit" element={
+                        <form className="modal-content insettings" onClick={handleSubmitOther(handleFormOther)}>
+                        <h2 className="golden "> Modifications </h2>
+                        <input type="password" className="form-field" {...registerLoginOther('oldPassword')} placeholder="Ancien mot de passe" />
+                        <input type="password" className="form-field" {...registerLoginOther('password')} placeholder="Nouveau mot de passe" />
+                        <input type="password" className="form-field" {...registerLoginOther('confirmPassword')} placeholder="Répéter mot de passe" />
+                        <input type="submit" className="validate-form" defaultValue="Sauvegarder" />
+                    </form>
+                    } />
+
+
+                    <Route path="settings/delete" element={
+                        <form className="modal-content insettings" onClick={handleSubmitSecondOther(handleFormSecondOther)}>
+                        <h2 className="golden "> Suppressions </h2>
+                        <input type="password" className="form-field" {...registerLoginSecondOther('oldPassword')} placeholder="Ancien mot de passe" />
+                        <input type="password" className="form-field" {...registerLoginSecondOther('password')} placeholder="Nouveau mot de passe" />
+                        <input type="password" className="form-field" {...registerLoginSecondOther('confirmPassword')} placeholder="Répéter mot de passe" />
+                        <input type="submit" className="validate-form" defaultValue="Sauvegarder" />
+                    </form>
+                    } />
+                </Routes>
+
+                {/* <form className="modal-content insettings" onClick={handleSubmitLogin(handleFormLogin)}>
                     <h2 className="golden "> Connexion </h2>
                     <input type="password" className="form-field" {...registerLoginForm('oldPassword')} placeholder="Ancien mot de passe" />
                     <input type="password" className="form-field" {...registerLoginForm('password')} placeholder="Nouveau mot de passe" />
@@ -147,9 +194,8 @@ function Settings({ closeModal }){
                     <input type="password" className="form-field" {...registerLoginSecondOther('password')} placeholder="Nouveau mot de passe" />
                     <input type="password" className="form-field" {...registerLoginSecondOther('confirmPassword')} placeholder="Répéter mot de passe" />
                     <input type="submit" className="validate-form" defaultValue="Sauvegarder" />
-                </form>
+                </form> */}
             </div>
-
         <ToastContainer />
         </div>
 

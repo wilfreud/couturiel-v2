@@ -27,7 +27,7 @@ function AppWrapper(){
             <QueryClientProvider client={queryClient}>
             <Sidebar />
                 <Routes>
-                    <Route path="home" element={<Home />} />
+                    <Route index path="home" element={<Home />} />
                     <Route path="clients" element={<Clients />} />
                     <Route path="modeles" element={<Modeles />} />
                     <Route path="modeles/:categorie" element={<Produits />} />
